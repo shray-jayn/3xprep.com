@@ -133,8 +133,8 @@ export const ComparisonTable = () => {
         </div>
 
         {/* Desktop Table (hidden on small screens) */}
-        <div className="hidden lg:block">
-          <div className="bg-white rounded-2xl shadow-elegant overflow-hidden">
+        <div className="hidden lg:block overflow-x-auto">
+          <div className="bg-white rounded-2xl shadow-elegant overflow-hidden min-w-[800px]">
             {/* Header Row */}
             <div className="grid grid-cols-4 border-b border-neutral-200">
               <div className="p-6">
