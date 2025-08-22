@@ -19,7 +19,7 @@ export const Hero = () => {
                 3X the Prep. <span className="highlight-gold">3X Your Future.</span>
               </h1>
               <p className="text-fluid-title text-neutral-600 font-body leading-relaxed max-w-2xl">
-                World-class tutoring for SAT, LSAT, and MCAT — designed for ambitious students who want top scores and elite futures.
+                World-class tutoring for SAT, LSAT, and MCAT designed for ambitious students who want top scores and elite futures.
               </p>
             </div>
 

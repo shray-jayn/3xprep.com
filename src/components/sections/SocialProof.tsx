@@ -128,7 +128,7 @@ export const SocialProof = () => {
         </div>
 
         {/* Platform Logos */}
-        <div className="flex flex-wrap items-center justify-center gap-8 mt-16 pt-12 border-t border-neutral-200">
+        {/* <div className="flex flex-wrap items-center justify-center gap-8 mt-16 pt-12 border-t border-neutral-200">
           <div className="text-center">
             <div className="text-sm font-medium text-neutral-600 mb-4">
               Featured on
@@ -164,7 +164,7 @@ export const SocialProof = () => {
               </svg>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
