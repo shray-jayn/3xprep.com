@@ -8,35 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* 3X Prep Brand System */
+    --primary: 210 60% 15%; /* Navy #0A2540 */
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 44 100% 67%; /* Gold #FFC857 */
+    --secondary-foreground: 210 60% 15%;
+    
+    --accent: 174 100% 38%; /* Teal #00BFA6 */
+    --accent-foreground: 0 0% 98%;
+    
+    /* Extended Brand Palette */
+    --navy-deeper: 208 66% 12%; /* #0E2130 */
+    --neutral-600: 215 15% 35%; /* #475569 */
+    --neutral-500: 210 9% 42%; /* #6A727A */
+    --neutral-300: 215 20% 70%; /* #D7DCE2 */
+    --neutral-200: 35 15% 89%; /* #ECEBE8 */
+    --neutral-100: 40 25% 96%; /* #F7F6F4 */
+    
+    /* Semantic Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 210 60% 15%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 210 60% 15%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --popover-foreground: 210 60% 15%;
+    
+    --muted: 40 25% 96%;
+    --muted-foreground: 215 15% 35%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+    
+    --border: 215 20% 70%;
+    --input: 215 20% 70%;
+    --ring: 174 100% 38%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --radius: 1rem; /* Premium rounded-2xl feel */
+    
+    /* Premium Design System */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 4px 20px -8px hsl(var(--primary) / 0.12);
+    --shadow-hover: 0 8px 40px -12px hsl(var(--primary) / 0.2);
+    
+    /* Gold Highlighter Effect */
+    --highlight-gold: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--secondary) / 0.8) 100%);
+    
+    /* Premium Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--neutral-100)) 0%, hsl(var(--background)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--neutral-100)) 100%);
+    
+    /* Animation Tokens */
+    --transition-smooth: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-lift: transform 150ms ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +126,113 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  
+  /* Premium Typography Scale */
+  .text-display {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  
+  .text-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  /* Gold Highlighter Component */
+  .highlight-gold {
+    position: relative;
+    display: inline;
+  }
+  
+  .highlight-gold::after {
+    content: "";
+    position: absolute;
+    left: -0.25rem;
+    right: -0.25rem;
+    bottom: 0.1em;
+    height: 0.4em;
+    background: var(--highlight-gold);
+    z-index: -1;
+    transform: rotate(-1deg);
+    border-radius: 0.25rem;
+  }
+  
+  /* Premium Card Effects */
+  .card-elegant {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    border-radius: var(--radius);
+  }
+  
+  .card-elegant:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  /* Interactive Elements */
+  .hover-lift {
+    transition: var(--transition-lift);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Text Utilities */
+  .text-fluid-display {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+  
+  .text-fluid-headline {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  
+  .text-fluid-title {
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+  }
+}
+
+@layer utilities {
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .hover-lift:hover,
+    .card-elegant:hover {
+      transform: none;
+    }
+    
+    .animate-fade-in {
+      animation: none;
+    }
   }
 }

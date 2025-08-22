@@ -52,6 +52,24 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				/* 3X Prep Extended Palette */
+				navy: {
+					DEFAULT: 'hsl(var(--primary))',
+					deep: 'hsl(var(--navy-deeper))'
+				},
+				gold: {
+					DEFAULT: 'hsl(var(--secondary))'
+				},
+				teal: {
+					DEFAULT: 'hsl(var(--accent))'
+				},
+				neutral: {
+					600: 'hsl(var(--neutral-600))',
+					500: 'hsl(var(--neutral-500))',
+					300: 'hsl(var(--neutral-300))',
+					200: 'hsl(var(--neutral-200))',
+					100: 'hsl(var(--neutral-100))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +80,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			fontFamily: {
+				'sans': ['Inter', 'system-ui', 'sans-serif'],
+				'mono': ['Montserrat', 'system-ui', 'sans-serif'],
+				'serif': ['Playfair Display', 'serif'],
+				'display': ['Playfair Display', 'serif'],
+				'headline': ['Montserrat', 'sans-serif'],
+				'body': ['Inter', 'sans-serif']
+			},
+			boxShadow: {
+				'elegant': '0 10px 30px -10px hsl(var(--primary) / 0.15)',
+				'card': '0 4px 20px -8px hsl(var(--primary) / 0.12)',
+				'hover': '0 8px 40px -12px hsl(var(--primary) / 0.2)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
