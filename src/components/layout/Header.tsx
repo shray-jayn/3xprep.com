@@ -1,16 +1,15 @@
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button-enhanced"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
+import { SITE_CONFIG } from "@/data/site"
 
 const navigation = [
-  { name: "SAT Tutoring", href: "/sat-tutoring" },
-  { name: "LSAT Tutoring", href: "/lsat-tutoring" },
-  { name: "MCAT Tutoring", href: "/mcat-tutoring" },
-  { name: "Tutoring", href: "/tutoring" },
-  { name: "Resources", href: "/resources" },
+  { name: "Home", href: "/" },
+  { name: "Tutoring Locations", href: "/tutoring-locations" },
+  { name: "Practice Tests", href: "/practice-tests" },
 ]
 
 export const Header = () => {
@@ -55,13 +54,20 @@ export const Header = () => {
           <Button variant="ghost" asChild>
             <Link to="/login">Log In</Link>
           </Button>
-          <Button variant="primary" size="lg" asChild>
-            <Link to="/get-started">Get Started</Link>
+          <Button variant="primary" size="lg">
+            Book Consultation
           </Button>
         </div>
 
         {/* Mobile Menu */}
-        <div className="flex md:hidden ml-auto">
+        <div className="flex md:hidden ml-auto items-center space-x-2">
+          {/* Mobile Call Button */}
+          <Button variant="ghost" size="icon" asChild>
+            <a href={`tel:${SITE_CONFIG.supportPhone}`} aria-label="Call now">
+              <Phone className="h-4 w-4" />
+            </a>
+          </Button>
+          
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Open menu">
@@ -108,8 +114,14 @@ export const Header = () => {
                   <Button variant="ghost" className="w-full justify-start" asChild>
                     <Link to="/login" onClick={() => setIsOpen(false)}>Log In</Link>
                   </Button>
-                  <Button variant="primary" size="lg" className="w-full" asChild>
-                    <Link to="/get-started" onClick={() => setIsOpen(false)}>Get Started</Link>
+                  <Button variant="primary" size="lg" className="w-full">
+                    Book Consultation
+                  </Button>
+                  <Button variant="accent" size="lg" className="w-full" asChild>
+                    <a href={`tel:${SITE_CONFIG.supportPhone}`}>
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call Now
+                    </a>
                   </Button>
                 </div>
               </div>
