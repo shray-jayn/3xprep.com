@@ -44,12 +44,6 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-
-    /* Premium shadows */
-    --shadow-soft: 0 2px 8px -2px hsl(var(--navy-deep) / 0.08);
-    --shadow-medium: 0 4px 16px -4px hsl(var(--navy-deep) / 0.12);
-    --shadow-strong: 0 8px 32px -8px hsl(var(--navy-deep) / 0.16);
-    --shadow-hover: 0 12px 48px -12px hsl(var(--navy-deep) / 0.20);
     
     /* Premium transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -92,7 +86,7 @@
 @layer components {
   /* Premium Card Styles */
   .card-elegant {
-    @apply bg-card border border-border/50 rounded-2xl shadow-soft transition-all duration-300 hover:shadow-hover hover:-translate-y-1;
+    @apply bg-card border border-border/50 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
   
   .card-featured {
@@ -101,7 +95,7 @@
   
   /* Premium Button Enhancements */
   .btn-hero {
-    @apply bg-gradient-to-r from-secondary to-secondary/90 text-secondary-foreground hover:from-secondary/90 hover:to-secondary/80 shadow-medium hover:shadow-strong;
+    @apply bg-gradient-to-r from-secondary to-secondary/90 text-secondary-foreground hover:from-secondary/90 hover:to-secondary/80 shadow-md hover:shadow-lg;
   }
   
   .btn-accent {
@@ -114,7 +108,7 @@
   }
   
   .hover-glow {
-    @apply transition-shadow duration-300 hover:shadow-strong;
+    @apply transition-shadow duration-300 hover:shadow-xl;
   }
   
   /* Focus States */
