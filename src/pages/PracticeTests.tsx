@@ -205,24 +205,32 @@ export default function PracticeTests() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-navy-deep text-white">
-          <div className="container max-w-screen-lg text-center space-y-8">
-            <h2 className="text-3xl font-playfair font-bold">
+        <section className="py-20 bg-gradient-to-br from-navy-deep via-primary to-navy-deep text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,hsl(var(--accent)/0.1),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,hsl(var(--secondary)/0.1),transparent_70%)]" />
+          <div className="container max-w-screen-lg text-center space-y-8 relative z-10">
+            <h2 className="text-3xl font-playfair font-bold text-white">
               Ready for Personalized Tutoring?
             </h2>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
               After taking your diagnostic, book a consultation to discuss your results 
               and create a personalized study plan with our expert tutors.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
-                variant="primary" 
+                variant="hero" 
                 size="xl"
                 onClick={() => setLeadDialogOpen(true)}
+                className="shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 Book Free Consultation
               </Button>
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-navy-deep" asChild>
+              <Button 
+                variant="outline" 
+                size="xl" 
+                className="border-white/30 bg-white/10 text-white hover:bg-white hover:text-navy-deep backdrop-blur-sm transition-all duration-200" 
+                asChild
+              >
                 <a href="/tutoring-locations">
                   View Tutoring Locations
                 </a>
