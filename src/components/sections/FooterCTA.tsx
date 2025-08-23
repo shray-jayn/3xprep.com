@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export const FooterCTA = () => {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-navy-deep via-black/90 to-navy-deep relative overflow-hidden">
+    <section className="py-20 lg:py-32 bg-gradient-to-br from-primary via-primary/95 to-navy-deep relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--secondary)/0.15),transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.15),transparent_50%)] pointer-events-none" />

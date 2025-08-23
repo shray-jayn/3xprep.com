@@ -205,14 +205,15 @@ export default function PracticeTests() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-navy-deep via-primary to-navy-deep text-white relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-primary via-primary/90 to-primary text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,hsl(var(--accent)/0.1),transparent_70%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,hsl(var(--secondary)/0.1),transparent_70%)]" />
+          <div className="absolute inset-0 bg-black/30 pointer-events-none" />
           <div className="container max-w-screen-lg text-center space-y-8 relative z-10">
-            <h2 className="text-3xl font-playfair font-bold text-white">
+            <h2 className="text-3xl font-playfair font-bold text-white drop-shadow-lg">
               Ready for Personalized Tutoring?
             </h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-white max-w-2xl mx-auto leading-relaxed drop-shadow-md">
               After taking your diagnostic, book a consultation to discuss your results 
               and create a personalized study plan with our expert tutors.
             </p>
@@ -228,7 +229,7 @@ export default function PracticeTests() {
               <Button 
                 variant="outline" 
                 size="xl" 
-                className="border-white/30 bg-white/10 text-white hover:bg-white hover:text-navy-deep backdrop-blur-sm transition-all duration-200" 
+                className="bg-transparent border border-white/30 text-white hover:bg-white/10 hover:border-white/60 focus-visible:ring-white/60" 
                 asChild
               >
                 <a href="/tutoring-locations">
