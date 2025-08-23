@@ -4,13 +4,15 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export const FooterCTA = () => {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-primary via-navy-deep to-primary relative overflow-hidden">
+    <section className="py-20 lg:py-32 bg-gradient-to-br from-navy-deep via-black/90 to-navy-deep relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--secondary)/0.2),transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.2),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--secondary)/0.15),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.15),transparent_50%)] pointer-events-none" />
+      {/* Additional dark overlay */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 relative">
-        <div className="text-center space-y-8">
+        <div className="text-center space-y-8 relative z-10">
           {/* Icon */}
           <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/20 rounded-2xl mb-8">
             <Sparkles className="h-8 w-8 text-secondary" />
@@ -18,10 +20,10 @@ export const FooterCTA = () => {
 
           {/* Headline */}
           <div className="space-y-6">
-            <h2 className="text-display text-fluid-display font-bold text-white leading-tight">
+            <h2 className="text-display text-fluid-display font-bold text-white leading-tight drop-shadow-lg [text-shadow:_2px_2px_4px_rgb(0_0_0_/_50%)]">
               Ready to <span className="highlight-gold">3X Your Future</span>?
             </h2>
-            <p className="text-xl text-white/90 font-body max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white font-body max-w-3xl mx-auto leading-relaxed drop-shadow-md [text-shadow:_1px_1px_2px_rgb(0_0_0_/_60%)]">
               Join the program trusted by students across SAT, LSAT, and MCAT.
               Transform your scores, unlock elite opportunities, and build the
               future you deserve.
@@ -49,7 +51,7 @@ export const FooterCTA = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-white/70 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-white text-sm drop-shadow-sm">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-secondary rounded-full"></div>
               <span>30-day money-back guarantee</span>
