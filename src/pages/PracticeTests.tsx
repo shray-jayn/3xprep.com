@@ -2,20 +2,25 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button-enhanced";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LeadDialog } from "@/components/LeadDialog";
-import { SITE_CONFIG, EXTERNAL_LINKS } from "@/data/site";
-import { ExternalLink, BookOpen, Clock, Target, AlertCircle } from "lucide-react";
+import { SITE_CONFIG } from "@/data/site";
+import { BookOpen, Clock, Target } from "lucide-react";
 
 export default function PracticeTests() {
   const [searchParams] = useSearchParams();
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
   const isFromDiagnostic = searchParams.get("source") === "diagnostic";
 
-  const openDiagnosticFlow = () => {
-    setLeadDialogOpen(true);
-  };
+  const openDiagnosticFlow = () => setLeadDialogOpen(true);
 
   return (
     <>
@@ -25,7 +30,10 @@ export default function PracticeTests() {
           name="description"
           content="Access free diagnostic tests for SAT, LSAT, and MCAT. Get started with practice tests to identify your strengths and areas for improvement."
         />
-        <meta name="keywords" content="practice tests, diagnostic, SAT, LSAT, MCAT, free tests, 3X Prep" />
+        <meta
+          name="keywords"
+          content="practice tests, diagnostic, SAT, LSAT, MCAT, free tests, 3X Prep"
+        />
         <link rel="canonical" href={`${SITE_CONFIG.url}/practice-tests`} />
       </Helmet>
 
@@ -38,13 +46,15 @@ export default function PracticeTests() {
                 Free <span className="highlight-gold">Practice Tests</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Take our diagnostic tests to identify your strengths and areas for improvement. 
-                Get a baseline score and personalized study recommendations.
+                Take our diagnostic tests to identify your strengths and areas
+                for improvement. Get a baseline score and personalized study
+                recommendations.
               </p>
               {isFromDiagnostic && (
                 <div className="bg-accent/10 border border-accent/20 rounded-xl p-4 inline-block">
                   <p className="text-accent font-medium">
-                    ✅ Form submitted successfully! You now have access to our diagnostic tests below.
+                    ✅ Form submitted successfully! You now have access to our
+                    diagnostic tests below.
                   </p>
                 </div>
               )}
@@ -55,10 +65,9 @@ export default function PracticeTests() {
         {/* Practice Tests Grid */}
         <section className="py-20">
           <div className="container max-w-screen-lg">
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* SAT Diagnostic */}
-              <Card className="flex flex-col h-full transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
+              <Card className="transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4">
                     <BookOpen className="h-8 w-8 text-accent" />
@@ -71,7 +80,7 @@ export default function PracticeTests() {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="flex-1 space-y-4">
+                <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm">
                       <Clock className="h-4 w-4 text-muted-foreground" />
@@ -84,25 +93,29 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="space-y-2">
-                    <Badge variant="outline" className="text-xs">Reading & Writing</Badge>
-                    <Badge variant="outline" className="text-xs">Math</Badge>
-                  </div>
-
-                  <div className="pt-4 mt-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      onClick={openDiagnosticFlow}
-                    >
-                      Take SAT Diagnostic
-                    </Button>
+                    <Badge variant="outline" className="text-xs">
+                      Reading & Writing
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      Math
+                    </Badge>
                   </div>
                 </CardContent>
+
+                <CardFooter>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full"
+                    onClick={openDiagnosticFlow}
+                  >
+                    Take SAT Diagnostic
+                  </Button>
+                </CardFooter>
               </Card>
 
               {/* LSAT Diagnostic */}
-              <Card className="flex flex-col h-full transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
+              <Card className="transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4">
                     <BookOpen className="h-8 w-8 text-accent" />
@@ -115,7 +128,7 @@ export default function PracticeTests() {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="flex-1 space-y-4">
+                <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm">
                       <Clock className="h-4 w-4 text-muted-foreground" />
@@ -128,26 +141,32 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="space-y-2">
-                    <Badge variant="outline" className="text-xs">Logical Reasoning</Badge>
-                    <Badge variant="outline" className="text-xs">Reading Comprehension</Badge>
-                    <Badge variant="outline" className="text-xs">Logic Games</Badge>
-                  </div>
-
-                  <div className="pt-4 mt-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      onClick={openDiagnosticFlow}
-                    >
-                      Take LSAT Diagnostic
-                    </Button>
+                    <Badge variant="outline" className="text-xs">
+                      Logical Reasoning
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      Reading Comprehension
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      Logic Games
+                    </Badge>
                   </div>
                 </CardContent>
+
+                <CardFooter>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full"
+                    onClick={openDiagnosticFlow}
+                  >
+                    Take LSAT Diagnostic
+                  </Button>
+                </CardFooter>
               </Card>
 
               {/* MCAT Diagnostic */}
-              <Card className="flex flex-col h-full transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
+              <Card className="transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4">
                     <BookOpen className="h-8 w-8 text-accent" />
@@ -160,7 +179,7 @@ export default function PracticeTests() {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="flex-1 space-y-4">
+                <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm">
                       <Clock className="h-4 w-4 text-muted-foreground" />
@@ -173,22 +192,28 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="space-y-2">
-                    <Badge variant="outline" className="text-xs">Chemical & Physical</Badge>
-                    <Badge variant="outline" className="text-xs">Biological & Biochemical</Badge>
-                    <Badge variant="outline" className="text-xs">Psychology & Sociology</Badge>
-                  </div>
-
-                  <div className="pt-4 mt-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      onClick={openDiagnosticFlow}
-                    >
-                      Take MCAT Diagnostic
-                    </Button>
+                    <Badge variant="outline" className="text-xs">
+                      Chemical & Physical
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      Biological & Biochemical
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      Psychology & Sociology
+                    </Badge>
                   </div>
                 </CardContent>
+
+                <CardFooter>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full"
+                    onClick={openDiagnosticFlow}
+                  >
+                    Take MCAT Diagnostic
+                  </Button>
+                </CardFooter>
               </Card>
             </div>
 
@@ -197,7 +222,9 @@ export default function PracticeTests() {
               <div className="inline-flex items-center gap-2 bg-muted/50 px-6 py-4 rounded-xl">
                 <BookOpen className="h-5 w-5 text-muted-foreground" />
                 <p className="text-sm text-muted-foreground">
-                  <strong>Coming Soon:</strong> We'll integrate native diagnostic tests directly into our platform for a seamless experience.
+                  <strong>Coming Soon:</strong> We'll integrate native
+                  diagnostic tests directly into our platform for a seamless
+                  experience.
                 </p>
               </div>
             </div>
@@ -214,27 +241,26 @@ export default function PracticeTests() {
               Ready for Personalized Tutoring?
             </h2>
             <p className="text-lg text-white max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-              After taking your diagnostic, book a consultation to discuss your results 
-              and create a personalized study plan with our expert tutors.
+              After taking your diagnostic, book a consultation to discuss your
+              results and create a personalized study plan with our expert
+              tutors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                variant="hero" 
+              <Button
+                variant="hero"
                 size="xl"
                 onClick={() => setLeadDialogOpen(true)}
                 className="shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 Book Free Consultation
               </Button>
-              <Button 
-                variant="outline" 
-                size="xl" 
-                className="bg-transparent border border-white/30 text-white hover:bg-white/10 hover:border-white/60 focus-visible:ring-white/60" 
+              <Button
+                variant="outline"
+                size="xl"
+                className="bg-transparent border border-white/30 text-white hover:bg-white/10 hover:border-white/60 focus-visible:ring-white/60"
                 asChild
               >
-                <a href="/tutoring-locations">
-                  View Tutoring Locations
-                </a>
+                <a href="/tutoring-locations">View Tutoring Locations</a>
               </Button>
             </div>
           </div>
@@ -242,7 +268,7 @@ export default function PracticeTests() {
       </div>
 
       {/* Lead Dialog */}
-      <LeadDialog 
+      <LeadDialog
         open={leadDialogOpen}
         onOpenChange={setLeadDialogOpen}
         mode="diagnostic"

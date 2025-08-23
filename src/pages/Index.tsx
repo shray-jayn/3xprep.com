@@ -64,7 +64,7 @@ const Index = () => {
           <FooterCTA />
         </Suspense>
         
-        <Footer />
+   
       </div>
     </>
   );

@@ -10,6 +10,10 @@ import { LocationListSkeleton } from "@/components/skeletons"
 import { LeadDialog } from "@/components/LeadDialog"
 import { Calculator, Users, Target, Shield, Star, ArrowRight, CheckCircle, Calendar } from "lucide-react"
 
+
+
+
+
 // Data from the tutoring page
 const packages = [
   {
@@ -411,8 +415,7 @@ const LocationTutoringPage = () => {
         </section>
       </main>
       
-      <Footer />
-      
+
       <LeadDialog
         open={isLeadDialogOpen}
         onOpenChange={setIsLeadDialogOpen}

@@ -168,8 +168,7 @@ const faqs = [
 const Tutoring = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
+
       <main>
         {/* Hero */}
         <section className="pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-background via-neutral-100/50 to-background">

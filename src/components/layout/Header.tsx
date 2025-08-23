@@ -93,7 +93,7 @@ export const Header = () => {
           </Button>
           <Button 
             variant="primary" 
-            size="lg"
+            size="sm"
             onClick={() => openLeadDialog("consultation")}
           >
             Book Free Consultation

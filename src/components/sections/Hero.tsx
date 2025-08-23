@@ -15,10 +15,10 @@ export const Hero = () => {
           {/* Content */}
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-6">
-              <h1 className="text-display text-fluid-display font-bold text-white leading-tight">
+              <h1 className="text-display text-fluid-display font-bold text-black leading-tight">
                 3X the Prep. <span className="highlight-gold">3X Your Future.</span>
               </h1>
-              <p className="text-fluid-title text-white/90 font-body leading-relaxed max-w-2xl">
+              <p className="text-fluid-title text-black/90 font-body leading-relaxed max-w-2xl">
                 World-class tutoring for SAT, LSAT, and MCAT designed for ambitious students who want top scores and elite futures.
               </p>
             </div>
@@ -46,9 +46,9 @@ export const Hero = () => {
                     <Star key={i} className="h-4 w-4 fill-secondary text-secondary" />
                   ))}
                 </div>
-                <span className="text-sm font-medium text-white/80">4.9/5 from 2,500+ students</span>
+                <span className="text-sm font-medium text-black/80">4.9/5 from 2,500+ students</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-white/80">
+              <div className="flex items-center gap-2 text-sm text-black/80">
                 <Users className="h-4 w-4" />
                 <span>Trusted by 50,000+ students</span>
               </div>
