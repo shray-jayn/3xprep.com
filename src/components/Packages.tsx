@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button-enhanced";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PricingToggle } from "@/components/PricingToggle";
 import { PACKAGES, type TestType } from "@/data/site";
 import { Clock, CheckCircle, Star } from "lucide-react";
 
@@ -12,6 +14,7 @@ interface PackagesProps {
 
 export function Packages({ test, city, onBookingClick }: PackagesProps) {
   const packages = PACKAGES[test];
+  const [pricingPeriod, setPricingPeriod] = useState<"monthly" | "annual">("monthly");
 
   return (
     <div className="space-y-6">
@@ -23,6 +26,8 @@ export function Packages({ test, city, onBookingClick }: PackagesProps) {
           Choose the package that fits your goals and timeline
         </p>
       </div>
+
+      <PricingToggle value={pricingPeriod} onChange={setPricingPeriod} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id={`${test}-packages`}>
         {packages.map((pkg, index) => {

@@ -9,15 +9,15 @@ interface PricingToggleProps {
 export function PricingToggle({ value, onChange }: PricingToggleProps) {
   return (
     <div className="flex items-center justify-center mb-8">
-      <div className="inline-flex items-center bg-neutral-100 rounded-xl p-1">
+      <div className="inline-flex items-center bg-muted rounded-xl p-1 border shadow-sm">
         <Button
           variant={value === "monthly" ? "default" : "ghost"}
           size="sm"
           onClick={() => onChange("monthly")}
           className={`px-6 py-2 rounded-lg transition-all duration-200 ${
             value === "monthly" 
-              ? "bg-white shadow-sm" 
-              : "text-neutral-600 hover:text-neutral-800"
+              ? "bg-background text-foreground shadow-sm" 
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
           Monthly
@@ -28,8 +28,8 @@ export function PricingToggle({ value, onChange }: PricingToggleProps) {
           onClick={() => onChange("annual")}
           className={`px-6 py-2 rounded-lg transition-all duration-200 ${
             value === "annual" 
-              ? "bg-white shadow-sm" 
-              : "text-neutral-600 hover:text-neutral-800"
+              ? "bg-background text-foreground shadow-sm" 
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
           Annual

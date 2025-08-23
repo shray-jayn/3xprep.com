@@ -126,11 +126,12 @@ export function LeadDialog({ open, onOpenChange, mode, defaultCity }: LeadDialog
                   variant="accent"
                   size="lg"
                   className="flex-1"
-                  asChild
+                  onClick={() => {
+                    window.open("https://app.3xprep.com/diagnostic", "_blank", "noopener,noreferrer");
+                    handleClose();
+                  }}
                 >
-                  <Link to="/practice-tests?source=diagnostic">
-                    Take Diagnostic
-                  </Link>
+                  Take Diagnostic
                 </Button>
               )}
             </div>

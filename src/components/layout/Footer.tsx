@@ -53,7 +53,7 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-navy-deep text-white">
+    <footer className="bg-gradient-to-br from-navy-deep via-primary to-navy-deep text-white">
       <div className="container max-w-screen-xl mx-auto px-4">
         {/* Main Footer */}
         <div className="py-16 lg:py-20">

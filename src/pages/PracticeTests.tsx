@@ -56,34 +56,6 @@ export default function PracticeTests() {
         <section className="py-20">
           <div className="container max-w-screen-lg">
             
-            {/* Gated Access Notice */}
-            {!isFromDiagnostic && (
-              <div className="mb-12 max-w-2xl mx-auto">
-                <Card className="border-orange-200 bg-orange-50 dark:bg-orange-950/20 dark:border-orange-800">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-3">
-                      <AlertCircle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
-                      <div className="space-y-3">
-                        <h3 className="font-semibold text-orange-900 dark:text-orange-100">
-                          Complete Form to Access Tests
-                        </h3>
-                        <p className="text-orange-800 dark:text-orange-200 text-sm">
-                          To access our free diagnostic tests, please complete a quick form first. 
-                          This helps us provide you with personalized recommendations and support.
-                        </p>
-                        <Button 
-                          variant="accent" 
-                          onClick={openDiagnosticFlow}
-                          className="bg-orange-600 hover:bg-orange-700 text-white"
-                        >
-                          Complete Form & Access Tests
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* SAT Diagnostic */}
               <Card className="flex flex-col h-full transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
@@ -117,32 +89,14 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="pt-4 mt-auto">
-                    {isFromDiagnostic ? (
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        className="w-full"
-                        asChild
-                      >
-                        <a 
-                          href={EXTERNAL_LINKS.diagnostics.sat}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Take SAT Diagnostic
-                          <ExternalLink className="ml-2 h-4 w-4" />
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="w-full"
-                        onClick={openDiagnosticFlow}
-                      >
-                        Complete Form First
-                      </Button>
-                    )}
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      className="w-full"
+                      onClick={openDiagnosticFlow}
+                    >
+                      Take SAT Diagnostic
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -180,32 +134,14 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="pt-4 mt-auto">
-                    {isFromDiagnostic ? (
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        className="w-full"
-                        asChild
-                      >
-                        <a 
-                          href={EXTERNAL_LINKS.diagnostics.combined}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Take LSAT Diagnostic
-                          <ExternalLink className="ml-2 h-4 w-4" />
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="w-full"
-                        onClick={openDiagnosticFlow}
-                      >
-                        Complete Form First
-                      </Button>
-                    )}
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      className="w-full"
+                      onClick={openDiagnosticFlow}
+                    >
+                      Take LSAT Diagnostic
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -243,32 +179,14 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="pt-4 mt-auto">
-                    {isFromDiagnostic ? (
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        className="w-full"
-                        asChild
-                      >
-                        <a 
-                          href={EXTERNAL_LINKS.diagnostics.combined}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Take MCAT Diagnostic
-                          <ExternalLink className="ml-2 h-4 w-4" />
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="w-full"
-                        onClick={openDiagnosticFlow}
-                      >
-                        Complete Form First
-                      </Button>
-                    )}
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      className="w-full"
+                      onClick={openDiagnosticFlow}
+                    >
+                      Take MCAT Diagnostic
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

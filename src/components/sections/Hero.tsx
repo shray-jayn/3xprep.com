@@ -5,7 +5,7 @@ import heroStudents from "@/assets/hero-students.jpg"
 
 export const Hero = () => {
   return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-neutral-100/50 to-background overflow-hidden">
+    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-navy-deep via-primary to-navy-deep overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--secondary)/0.1),transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(var(--accent)/0.1),transparent_50%)] pointer-events-none" />
@@ -15,10 +15,10 @@ export const Hero = () => {
           {/* Content */}
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-6">
-              <h1 className="text-display text-fluid-display font-bold text-primary leading-tight">
+              <h1 className="text-display text-fluid-display font-bold text-white leading-tight">
                 3X the Prep. <span className="highlight-gold">3X Your Future.</span>
               </h1>
-              <p className="text-fluid-title text-neutral-600 font-body leading-relaxed max-w-2xl">
+              <p className="text-fluid-title text-white/90 font-body leading-relaxed max-w-2xl">
                 World-class tutoring for SAT, LSAT, and MCAT designed for ambitious students who want top scores and elite futures.
               </p>
             </div>
@@ -46,9 +46,9 @@ export const Hero = () => {
                     <Star key={i} className="h-4 w-4 fill-secondary text-secondary" />
                   ))}
                 </div>
-                <span className="text-sm font-medium text-neutral-600">4.9/5 from 2,500+ students</span>
+                <span className="text-sm font-medium text-white/80">4.9/5 from 2,500+ students</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-neutral-600">
+              <div className="flex items-center gap-2 text-sm text-white/80">
                 <Users className="h-4 w-4" />
                 <span>Trusted by 50,000+ students</span>
               </div>
