@@ -19,9 +19,9 @@ export default function LocationsIndex() {
         <link rel="canonical" href={`${SITE_CONFIG.url}/tutoring-locations`} />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background bg-pattern-dots">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-background to-muted/20">
+        <section className="py-24 bg-gradient-to-br from-background to-muted/20 bg-premium-subtle">
           <div className="container max-w-screen-xl">
             <div className="text-center space-y-6 max-w-4xl mx-auto">
               <h1 className="text-[clamp(32px,4vw,48px)] font-playfair font-bold text-navy-deep leading-tight">

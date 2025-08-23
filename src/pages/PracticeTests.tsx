@@ -1,14 +1,21 @@
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button-enhanced";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { LeadDialog } from "@/components/LeadDialog";
 import { SITE_CONFIG, EXTERNAL_LINKS } from "@/data/site";
-import { ExternalLink, BookOpen, Clock, Target } from "lucide-react";
+import { ExternalLink, BookOpen, Clock, Target, AlertCircle } from "lucide-react";
 
 export default function PracticeTests() {
   const [searchParams] = useSearchParams();
+  const [leadDialogOpen, setLeadDialogOpen] = useState(false);
   const isFromDiagnostic = searchParams.get("source") === "diagnostic";
+
+  const openDiagnosticFlow = () => {
+    setLeadDialogOpen(true);
+  };
 
   return (
     <>
@@ -22,9 +29,9 @@ export default function PracticeTests() {
         <link rel="canonical" href={`${SITE_CONFIG.url}/practice-tests`} />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background bg-pattern-grid">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-background to-muted/20">
+        <section className="py-24 bg-gradient-to-br from-background to-muted/20 bg-premium-radial">
           <div className="container max-w-screen-xl">
             <div className="text-center space-y-6 max-w-4xl mx-auto">
               <h1 className="text-[clamp(32px,4vw,48px)] font-playfair font-bold text-navy-deep leading-tight">
@@ -48,6 +55,35 @@ export default function PracticeTests() {
         {/* Practice Tests Grid */}
         <section className="py-20">
           <div className="container max-w-screen-lg">
+            
+            {/* Gated Access Notice */}
+            {!isFromDiagnostic && (
+              <div className="mb-12 max-w-2xl mx-auto">
+                <Card className="border-orange-200 bg-orange-50 dark:bg-orange-950/20 dark:border-orange-800">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-3">
+                      <AlertCircle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-orange-900 dark:text-orange-100">
+                          Complete Form to Access Tests
+                        </h3>
+                        <p className="text-orange-800 dark:text-orange-200 text-sm">
+                          To access our free diagnostic tests, please complete a quick form first. 
+                          This helps us provide you with personalized recommendations and support.
+                        </p>
+                        <Button 
+                          variant="accent" 
+                          onClick={openDiagnosticFlow}
+                          className="bg-orange-600 hover:bg-orange-700 text-white"
+                        >
+                          Complete Form & Access Tests
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* SAT Diagnostic */}
               <Card className="flex flex-col h-full transition-all duration-200 hover:shadow-hover hover:-translate-y-1">
@@ -81,21 +117,32 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="pt-4 mt-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      asChild
-                    >
-                      <a 
-                        href={EXTERNAL_LINKS.diagnostics.sat}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {isFromDiagnostic ? (
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
+                        asChild
                       >
-                        Take SAT Diagnostic
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
+                        <a 
+                          href={EXTERNAL_LINKS.diagnostics.sat}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Take SAT Diagnostic
+                          <ExternalLink className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="w-full"
+                        onClick={openDiagnosticFlow}
+                      >
+                        Complete Form First
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -133,21 +180,32 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="pt-4 mt-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      asChild
-                    >
-                      <a 
-                        href={EXTERNAL_LINKS.diagnostics.combined}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {isFromDiagnostic ? (
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
+                        asChild
                       >
-                        Take LSAT Diagnostic
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
+                        <a 
+                          href={EXTERNAL_LINKS.diagnostics.combined}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Take LSAT Diagnostic
+                          <ExternalLink className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="w-full"
+                        onClick={openDiagnosticFlow}
+                      >
+                        Complete Form First
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -185,21 +243,32 @@ export default function PracticeTests() {
                   </div>
 
                   <div className="pt-4 mt-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      asChild
-                    >
-                      <a 
-                        href={EXTERNAL_LINKS.diagnostics.combined}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {isFromDiagnostic ? (
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
+                        asChild
                       >
-                        Take MCAT Diagnostic
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
+                        <a 
+                          href={EXTERNAL_LINKS.diagnostics.combined}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Take MCAT Diagnostic
+                          <ExternalLink className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="w-full"
+                        onClick={openDiagnosticFlow}
+                      >
+                        Complete Form First
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -228,16 +297,29 @@ export default function PracticeTests() {
               and create a personalized study plan with our expert tutors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="xl">
+              <Button 
+                variant="primary" 
+                size="xl"
+                onClick={() => setLeadDialogOpen(true)}
+              >
                 Book Free Consultation
               </Button>
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-navy-deep">
-                View Tutoring Locations
+              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-navy-deep" asChild>
+                <a href="/tutoring-locations">
+                  View Tutoring Locations
+                </a>
               </Button>
             </div>
           </div>
         </section>
       </div>
+
+      {/* Lead Dialog */}
+      <LeadDialog 
+        open={leadDialogOpen}
+        onOpenChange={setLeadDialogOpen}
+        mode="diagnostic"
+      />
     </>
   );
 }

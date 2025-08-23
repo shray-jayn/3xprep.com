@@ -1,10 +1,11 @@
-import { useState } from "react"
-import { Link, NavLink } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button-enhanced"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { LeadDialog } from "@/components/LeadDialog"
 import { cn } from "@/lib/utils"
-import { SITE_CONFIG } from "@/data/site"
+import { SITE_CONFIG, LOCATIONS } from "@/data/site"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -14,9 +15,45 @@ const navigation = [
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [leadDialogOpen, setLeadDialogOpen] = useState(false)
+  const [leadDialogMode, setLeadDialogMode] = useState<"consultation" | "diagnostic">("consultation")
+  const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+
+  // Get default city from current location page
+  const currentCity = (() => {
+    if (location.pathname.includes("/mcat-lsat-sat-prep-tutoring-")) {
+      const citySlug = location.pathname.split("/mcat-lsat-sat-prep-tutoring-")[1]
+      const locationData = LOCATIONS.find(loc => loc.slug.includes(citySlug))
+      return locationData?.city
+    }
+    return undefined
+  })()
+
+  // Handle scroll effects
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const openLeadDialog = (mode: "consultation" | "diagnostic") => {
+    setLeadDialogMode(mode)
+    setLeadDialogOpen(true)
+    setIsOpen(false)
+  }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <>
+    <header className={cn(
+      "sticky top-0 z-50 w-full transition-all duration-200",
+      "border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+      scrolled 
+        ? "border-border/60 shadow-md bg-background/98" 
+        : "border-border/40 shadow-sm"
+    )}>
       <div className="container flex h-16 max-w-screen-2xl items-center">
         {/* Logo */}
         <div className="mr-6 flex">
@@ -54,8 +91,12 @@ export const Header = () => {
           <Button variant="ghost" asChild>
             <Link to="/login">Log In</Link>
           </Button>
-          <Button variant="primary" size="lg">
-            Book Consultation
+          <Button 
+            variant="primary" 
+            size="lg"
+            onClick={() => openLeadDialog("consultation")}
+          >
+            Book Free Consultation
           </Button>
         </div>
 
@@ -114,8 +155,13 @@ export const Header = () => {
                   <Button variant="ghost" className="w-full justify-start" asChild>
                     <Link to="/login" onClick={() => setIsOpen(false)}>Log In</Link>
                   </Button>
-                  <Button variant="primary" size="lg" className="w-full">
-                    Book Consultation
+                  <Button 
+                    variant="primary" 
+                    size="lg" 
+                    className="w-full"
+                    onClick={() => openLeadDialog("consultation")}
+                  >
+                    Book Free Consultation
                   </Button>
                   <Button variant="accent" size="lg" className="w-full" asChild>
                     <a href={`tel:${SITE_CONFIG.supportPhone}`}>
@@ -130,5 +176,14 @@ export const Header = () => {
         </div>
       </div>
     </header>
+
+    {/* Lead Dialog */}
+    <LeadDialog 
+      open={leadDialogOpen}
+      onOpenChange={setLeadDialogOpen}
+      mode={leadDialogMode}
+      defaultCity={currentCity}
+    />
+    </>
   )
 }
