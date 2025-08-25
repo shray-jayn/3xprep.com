@@ -12,10 +12,9 @@ export default function LocationLandingPage() {
   const { city } = useParams<{ city: string }>();
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
   
-  // Extract city name from slug
-  const citySlug = city?.replace('mcat-lsat-sat-prep-tutoring-', '');
+  // Find location by matching the city parameter to the slug
   const location = LOCATIONS.find(loc => 
-    loc.slug === `mcat-lsat-sat-prep-tutoring-${citySlug}`
+    loc.slug === `mcat-lsat-sat-prep-tutoring-${city}`
   );
   
   if (!location) {
