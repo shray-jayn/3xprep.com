@@ -9,12 +9,13 @@ import { useState } from "react";
 import heroStudents from "@/assets/hero-students.jpg";
 
 export default function LocationLandingPage() {
-  const { city } = useParams<{ city: string }>();
+  const { "*": wildcard } = useParams<{ "*": string }>();
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
   
-  // Find location by matching the city parameter to the slug
+  // Extract the full path and find matching location
+  const fullPath = `/mcat-lsat-sat-prep-tutoring-${wildcard}`;
   const location = LOCATIONS.find(loc => 
-    loc.slug === `mcat-lsat-sat-prep-tutoring-${city}`
+    fullPath === `/${loc.slug}`
   );
   
   if (!location) {

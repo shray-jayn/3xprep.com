@@ -52,11 +52,11 @@ const App = () => (
             {/* <Route path="/tutoring" element={<Tutoring />} /> */}
             <Route path="/tutoring-locations" element={<LocationsIndex />} />
             <Route
-              path="/mcat-lsat-sat-prep-tutoring-:city"
+              path="/mcat-lsat-sat-prep-tutoring-*"
               element={<LocationLandingPage />}
             />
             <Route
-              path="/:exam-prep-tutoring-:city"
+              path="/*-prep-tutoring-*"
               element={<ExamLocationPage />}
             />
             <Route path="/practice-tests" element={<PracticeTests />} />
