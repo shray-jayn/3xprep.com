@@ -74,10 +74,10 @@ export const Header = () => {
               to={item.href}
               className={({ isActive }) =>
                 cn(
-                  "relative transition-colors hover:text-foreground/80 py-2 px-1 font-headline font-medium",
+                  "relative transition-all duration-300 hover:text-foreground hover:scale-105 py-2 px-3 rounded-lg font-headline font-medium hover:bg-accent/10",
                   isActive
-                    ? "text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent after:rounded-full"
-                    : "text-foreground/60"
+                    ? "text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent after:rounded-full bg-accent/5"
+                    : "text-foreground/70 hover:bg-accent/5"
                 )
               }
             >

@@ -6,10 +6,14 @@ import { TutoringPackages } from "@/components/TutoringPackages";
 import { FAQGenerator } from "@/components/FAQGenerator";
 import { LeadDialog } from "@/components/LeadDialog";
 import { CheckCircle, ArrowRight } from "lucide-react";
-import heroStudents from "@/assets/hero-students.jpg";
 import { PageShell } from "@/components/layout/PageShell";
 import { SITE_CONFIG } from "@/data/site";
 import { createPageSEO } from "@/lib/seo";
+import { ExamHero } from "@/components/sections/ExamHero";
+import { ExamFeatures } from "@/components/sections/ExamFeatures";
+import { ExamTestimonial } from "@/components/sections/ExamTestimonial";
+import { Section } from "@/components/ui/section";
+import { useConsoleTrace } from "@/hooks/useConsoleTrace";
 
 type ExamType = "SAT" | "LSAT" | "MCAT";
 
@@ -56,6 +60,8 @@ export default function ExamLocationPage(props: ExamLocationProps) {
   // Allow values from: 1) props, 2) Link state, 3) query params, 4) sane defaults
   const location = useLocation() as { state?: Partial<ExamLocationProps> };
   const [searchParams] = useSearchParams();
+  
+  useConsoleTrace("ExamLocationPage", { props, searchParams: Object.fromEntries(searchParams.entries()) });
 
   const EXAM: ExamType =
     props.exam ??
@@ -165,211 +171,106 @@ export default function ExamLocationPage(props: ExamLocationProps) {
         />
       </Helmet>
 
-      <main className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 bg-gradient-to-br from-background via-neutral-100/50 to-background overflow-hidden bg-pattern-grid ">
-          <div className="container max-w-screen-xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <div className="text-6xl mb-4">{currentExam.icon}</div>
+      {/* Hero Section */}
+      <ExamHero
+        examName={currentExam.name}
+        examIcon={currentExam.icon}
+        cityName={CITY_NAME}
+        improvement={currentExam.improvement}
+        targetScore={currentExam.targetScore}
+        onBookingClick={() => setLeadDialogOpen(true)}
+      />
 
-                <h1 className="text-display text-fluid-display font-bold text-primary leading-tight">
-                  Elite{" "}
-                  <span className="highlight-gold">
-                    {currentExam.name} Prep
-                  </span>{" "}
-                  in {CITY_NAME} – Book Your Free Assessment
-                </h1>
+      {/* Features Section */}
+      <ExamFeatures examName={currentExam.name} cityName={CITY_NAME} />
 
-                <p className="text-xl text-neutral-600 font-body leading-relaxed">
-                  Trusted by students across {CITY_NAME}, 3X Prep offers
-                  tailored {currentExam.name} tutoring to triple your results.
-                </p>
+      {/* How It Works */}
+      <Section className="bg-premium-subtle">
+        <div className="text-center mb-16">
+          <h2 className="text-display text-fluid-headline font-bold text-primary mb-6">
+            How It <span className="highlight-gold">Works</span>
+          </h2>
+          <p className="text-xl text-muted-foreground font-body max-w-3xl mx-auto">
+            Our proven 4-step process gets you from where you are to where you want to be.
+          </p>
+        </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    variant="default"
-                    size="lg"
-                    onClick={() => setLeadDialogOpen(true)}
-                    className="font-semibold px-8 py-3 text-lg"
-                  >
-                    📞 Book Free Assessment
-                  </Button>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-primary font-display">
-                      {currentExam.improvement}
-                    </div>
-                    <div className="text-sm text-neutral-600">
-                      Avg. Improvement
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary font-display">
-                      {currentExam.targetScore}
-                    </div>
-                    <div className="text-sm text-neutral-600">
-                      Target Scores
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary font-display">
-                      99th
-                    </div>
-                    <div className="text-sm text-neutral-600">
-                      Percentile Tutors
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl transform rotate-6"></div>
-                <img
-                  src={heroStudents}
-                  alt={`Students preparing for ${currentExam.name} in ${CITY_NAME}`}
-                  className="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover"
-                  loading="eager"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="py-20">
-          <div className="container max-w-screen-xl">
-            <div className="text-center mb-16">
-              <h2 className="text-display text-fluid-headline font-bold text-primary mb-6">
-                How It <span className="highlight-gold">Works</span>
-              </h2>
-              <p className="text-xl text-neutral-600 font-body max-w-3xl mx-auto">
-                Our proven 4-step process gets you from where you are to where
-                you want to be.
-              </p>
-            </div>
-
-            <div className="space-y-12">
-              {steps.map((step) => (
-                <div
-                  key={step.number}
-                  className="flex flex-col md:flex-row items-start gap-8"
-                >
-                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-primary to-navy-deep rounded-2xl flex items-center justify-center">
-                    <span className="text-white font-bold text-lg font-display">
-                      {step.number}
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-primary mb-3 font-headline">
-                      {step.title}
-                    </h3>
-                    <p className="text-neutral-600 font-body leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => setLeadDialogOpen(true)}
-              >
-                Get Started Now
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Why 3X Prep */}
-        <section className="py-20 bg-neutral-100/30 bg-pattern-grid ">
-          <div className="container max-w-screen-xl">
-            <div className="text-center mb-16">
-              <h2 className="text-display text-fluid-headline font-bold text-primary mb-6">
-                Why Choose <span className="highlight-gold">3X Prep?</span>
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                  <p className="text-neutral-700 font-body leading-relaxed">
-                    {benefit}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <Button
-                variant="default"
-                size="lg"
-                onClick={() => setLeadDialogOpen(true)}
-              >
-                Meet Your Tutors
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonial */}
-        <section className="py-20">
-          <div className="container max-w-screen-xl">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="card-elegant p-8 lg:p-12">
-                <blockquote className="text-2xl text-neutral-700 font-body leading-relaxed mb-8">
-                  "We saw a dramatic improvement in just a few sessions. The
-                  tutors understood exactly how to motivate my child and target
-                  their specific challenges."
-                </blockquote>
-                <cite className="text-lg font-semibold text-primary font-headline">
-                  — Parent in {CITY_NAME}
-                </cite>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Tutoring Packages */}
-        <TutoringPackages
-          onBookingClick={() => setLeadDialogOpen(true)}
-          test={EXAM}
-          city={CITY_NAME}
-        />
-
-        {/* FAQs */}
-        <FAQGenerator exam={EXAM} location={CITY_NAME} />
-
-        {/* Final CTA */}
-        <section className="py-20 bg-gradient-to-br from-primary via-navy-deep to-primary">
-          <div className="container max-w-screen-xl text-center">
-            <h2 className="text-display text-fluid-display font-bold text-white mb-6">
-              Ready to Master the{" "}
-              <span className="highlight-gold">{currentExam.name}</span> in{" "}
-              {CITY_NAME}?
-            </h2>
-            <p className="text-xl text-white/90 font-body max-w-3xl mx-auto mb-8">
-              Book your free assessment today and start your journey to your
-              dream {currentExam.name} score.
-            </p>
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={() => setLeadDialogOpen(true)}
-              className="font-semibold px-8 py-3 text-lg"
+        <div className="space-y-8">
+          {steps.map((step) => (
+            <div
+              key={step.number}
+              className="group flex flex-col md:flex-row items-start gap-8 p-6 rounded-2xl hover:bg-card/50 transition-all duration-300"
             >
-              Book Free Assessment Today
-            </Button>
-          </div>
-        </section>
-      </main>
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <span className="text-white font-bold text-lg font-display">
+                  {step.number}
+                </span>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-primary mb-3 font-headline group-hover:text-accent transition-colors duration-200">
+                  {step.title}
+                </h3>
+                <p className="text-muted-foreground font-body leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => setLeadDialogOpen(true)}
+            className="group border-2 border-accent/30 hover:border-accent hover:bg-accent/5"
+          >
+            Get Started Now
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+          </Button>
+        </div>
+      </Section>
+
+      {/* Testimonial */}
+      <ExamTestimonial examName={currentExam.name} cityName={CITY_NAME} />
+
+      {/* Tutoring Packages */}
+      <TutoringPackages
+        onBookingClick={() => setLeadDialogOpen(true)}
+        test={EXAM}
+        city={CITY_NAME}
+      />
+
+      {/* FAQs */}
+      <FAQGenerator exam={EXAM} location={CITY_NAME} />
+
+      {/* Final CTA */}
+      <Section variant="dark" className="text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
+        <div className="relative z-10">
+          <h2 className="text-display text-fluid-display font-bold text-white mb-6">
+            Ready to Master the{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">
+              {currentExam.name}
+            </span>{" "}
+            in {CITY_NAME}?
+          </h2>
+          <p className="text-xl text-white/90 font-body max-w-3xl mx-auto mb-8">
+            Join hundreds of successful students who've achieved their dream {currentExam.name} scores. 
+            Your transformation starts with a free assessment.
+          </p>
+          <Button
+            variant="secondary"
+            size="lg"
+            onClick={() => setLeadDialogOpen(true)}
+            className="group font-semibold px-8 py-4 text-lg bg-gradient-to-r from-secondary to-accent hover:from-secondary/90 hover:to-accent/90 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+          >
+            <span className="mr-2">🚀</span>
+            Book Free Assessment Today
+            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+          </Button>
+        </div>
+      </Section>
 
       <LeadDialog
         open={leadDialogOpen}

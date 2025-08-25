@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useConsoleTrace } from "@/hooks/useConsoleTrace";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useLocation } from "react-router-dom";
 
 interface PageShellProps {
@@ -21,6 +22,9 @@ export const PageShell = ({
   className = ""
 }: PageShellProps) => {
   const location = useLocation();
+  
+  // Scroll to top on route changes
+  useScrollToTop();
   
   useConsoleTrace("PageShell", { 
     pathname: location.pathname,

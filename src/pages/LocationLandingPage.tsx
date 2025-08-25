@@ -8,7 +8,8 @@ import { SocialProofStats } from "@/components/sections/SocialProofStats";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { LOCATIONS } from "@/data/site";
 import { createLocationSEO } from "@/lib/seo";
-import { TutoringHero } from "@/components/sections/TutoringHero";
+import { LocationHeroPremium } from "@/components/sections/LocationHeroPremium";
+import { useConsoleTrace } from "@/hooks/useConsoleTrace";
 
 type LocationLandingPageProps = {
   cityName?: string; // optional prop from parent
@@ -23,6 +24,8 @@ export default function LocationLandingPage(props: LocationLandingPageProps) {
   // 4) finally derive from known slug in LOCATIONS
   const routerLoc = useLocation() as { state?: { cityName?: string } };
   const [searchParams] = useSearchParams();
+  
+  useConsoleTrace("LocationLandingPage", { props, searchParams: Object.fromEntries(searchParams.entries()) });
 
   // const pathname = routerLoc.pathname; // e.g. "/mcat-lsat-sat-prep-tutoring-delhi"
   // const slug = pathname.startsWith("/") ? pathname.slice(1) : pathname;
@@ -69,8 +72,11 @@ export default function LocationLandingPage(props: LocationLandingPageProps) {
       // canonical from the current URL so you don't need location.slug here
       canonical={`https://3xprep.com/`}
     >
-      {/* Hero */}
-      <TutoringHero />
+      {/* Enhanced Hero */}
+      <LocationHeroPremium 
+        cityName={resolvedCityName}
+        onBookingClick={() => setLeadDialogOpen(true)}
+      />
 
       <TestCardsGrid cityName={resolvedCityName} />
 
@@ -79,7 +85,10 @@ export default function LocationLandingPage(props: LocationLandingPageProps) {
         city={resolvedCityName}
       />
 
-      <SocialProofStats cityName={resolvedCityName} />
+      <SocialProofStats 
+        cityName={resolvedCityName} 
+        title={`Trusted by Students Across ${resolvedCityName}`}
+      />
 
       <FinalCTA
         cityName={resolvedCityName}
