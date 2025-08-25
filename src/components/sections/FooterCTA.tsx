@@ -27,14 +27,14 @@ export const FooterCTA = () => {
 
           {/* Enhanced Headline */}
           <div className="space-y-6">
-            <h2 className="text-display text-fluid-display font-bold text-white leading-tight">
+            <h2 className="text-display text-fluid-display font-bold text-black leading-tight">
               Ready to{" "}
               <span className="bg-gradient-to-r from-secondary via-accent to-secondary bg-clip-text text-transparent">
                 3X Your Future
               </span>
               ?
             </h2>
-            <p className="text-xl text-white/90 font-body max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-black/70 font-body max-w-4xl mx-auto leading-relaxed">
               Join the elite program trusted by students across SAT, LSAT, and MCAT.
               Transform your scores, unlock premium opportunities, and build the
               extraordinary future you deserve.
@@ -74,9 +74,9 @@ export const FooterCTA = () => {
               { icon: "💎", text: "No hidden fees or commitments" },
               { icon: "🔄", text: "Cancel anytime, keep materials" }
             ].map((item, index) => (
-              <div key={index} className="flex items-center justify-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div key={index} className="flex items-center justify-center gap-3 p-4  bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
                 <span className="text-xl">{item.icon}</span>
-                <span className="text-white/90 text-sm font-body">{item.text}</span>
+                <span className="text-black/70 text-sm font-body">{item.text}</span>
               </div>
             ))}
           </div>

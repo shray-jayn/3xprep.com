@@ -42,11 +42,11 @@ export const FinalCTA = ({
           <span className="text-3xl">🚀</span>
         </div>
 
-        <h2 className="text-display text-fluid-display font-bold text-white mb-6 leading-tight">
+        <h2 className="text-display text-fluid-display font-bold text-black mb-6 leading-tight">
           {title || defaultTitle}
         </h2>
         
-        <p className="text-xl text-white/90 font-body max-w-3xl mx-auto mb-8 leading-relaxed">
+        <p className="text-xl text-black/70 font-body max-w-3xl mx-auto mb-8 leading-relaxed">
           {description || defaultDescription}
         </p>
         

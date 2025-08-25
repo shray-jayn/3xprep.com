@@ -3,6 +3,8 @@ import { Section } from "@/components/ui/section";
 import { useConsoleTrace } from "@/hooks/useConsoleTrace";
 import premiumStudyHero from "@/assets/premium-study-hero.jpg";
 import examPrepWorkspace from "@/assets/exam-prep-workspace.jpg";
+import { useState } from "react";
+import heroStudents from "@/assets/hero-students.jpg";
 
 interface ExamHeroProps {
   examName: string;
@@ -22,135 +24,70 @@ export const ExamHero = ({
   onBookingClick
 }: ExamHeroProps) => {
   useConsoleTrace("ExamHero", { examName, cityName });
-
+  const [leadDialogOpen, setLeadDialogOpen] = useState(false);
   return (
-    <Section className="relative min-h-[100vh] bg-gradient-to-br from-navy-deep via-primary to-navy-medium overflow-hidden">
-      {/* Geometric background patterns */}
-      <div className="absolute inset-0">
-        {/* Large geometric shapes */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-secondary/20 to-transparent rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-accent/20 to-transparent rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
-        
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-      </div>
+    <section className="relative py-24 lg:py-32 bg-gradient-to-br from-background via-neutral-100/50 to-background overflow-hidden bg-pattern-grid ">
+      <div className="container max-w-screen-xl">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <div className="text-6xl mb-4">{examIcon}</div>
 
-      <div className="relative z-10 h-full flex items-center py-20">
-        <div className="grid lg:grid-cols-2 gap-20 items-center w-full">
-          {/* Left content */}
-          <div className="space-y-10">
-            {/* Exam badge */}
-            <div className="inline-flex items-center gap-4 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
-              <div className="text-4xl">{examIcon}</div>
-              <div>
-                <span className="text-secondary font-semibold text-lg font-headline">{examName} Excellence</span>
-                <p className="text-white/80 text-sm font-body">{cityName} Chapter</p>
-              </div>
-            </div>
+            <h1 className="text-display text-fluid-display font-bold text-primary leading-tight">
+              Elite <span className="highlight-gold">{examName} Prep</span> in{" "}
+              {cityName} – Book Your Free Assessment
+            </h1>
 
-            {/* Main headline */}
-            <div className="space-y-6">
-              <h1 className="text-white font-display leading-tight">
-                <span className="block text-4xl lg:text-5xl xl:text-6xl mb-2">Master the</span>
-                <span className="block text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-secondary via-accent to-secondary bg-clip-text text-transparent">
-                  {examName}
-                </span>
-                <span className="block text-3xl lg:text-4xl xl:text-5xl mt-2 text-white/90">
-                  with Elite Coaching
-                </span>
-              </h1>
-              
-              <p className="text-xl text-white/80 font-body leading-relaxed max-w-xl">
-                Join the ranks of top scorers in {cityName}. Our proven methodology has helped thousands achieve scores in the {targetScore} range with an average improvement of {improvement}.
-              </p>
-            </div>
+            <p className="text-xl text-neutral-600 font-body leading-relaxed">
+              Trusted by students across {cityName}, 3X Prep offers tailored{" "}
+              {examName} tutoring to triple your results.
+            </p>
 
-            {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={onBookingClick}
+                variant="default"
                 size="lg"
-                className="group bg-gradient-to-r from-secondary to-accent hover:from-secondary/90 hover:to-accent/90 text-primary font-semibold px-8 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                onClick={() => setLeadDialogOpen(true)}
+                className="font-semibold px-8 py-3 text-lg"
               >
-                🎯 Start Free Assessment
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="lg"
-                className="group border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-semibold px-8 py-4 text-lg"
-              >
-                📈 Success Stories
+                📞 Book Free Assessment
               </Button>
             </div>
 
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-8 pt-6">
-              {[
-                { value: improvement, label: "Avg. Improvement", icon: "📊" },
-                { value: "1000+", label: "Students Coached", icon: "👥" },
-                { value: "99th", label: "Percentile Tutors", icon: "🏆" }
-              ].map((stat, index) => (
-                <div key={index} className="flex items-center gap-3 group cursor-default">
-                  <div className="text-2xl">{stat.icon}</div>
-                  <div>
-                    <div className="text-2xl font-bold text-secondary font-display group-hover:text-accent transition-colors duration-200">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-white/70 font-body">
-                      {stat.label}
-                    </div>
-                  </div>
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div className="text-2xl font-bold text-primary font-display">
+                  {examName}
                 </div>
-              ))}
+                <div className="text-sm text-neutral-600">Avg. Improvement</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-primary font-display">
+                  {targetScore}
+                </div>
+                <div className="text-sm text-neutral-600">Target Scores</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-primary font-display">
+                  99th
+                </div>
+                <div className="text-sm text-neutral-600">
+                  Percentile Tutors
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right visual */}
-          <div className="relative flex justify-center items-center">
-            {/* Central hero card */}
-            <div className="relative w-80 h-96 group">
-              {/* Animated background cards */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/10 rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-700 backdrop-blur-sm border border-white/20"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-accent/20 rounded-3xl -rotate-6 group-hover:-rotate-12 transition-transform duration-700 backdrop-blur-sm border border-white/20"></div>
-              
-              {/* Main image */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-500 border-2 border-white/30">
-                <img
-                  src={premiumStudyHero}
-                  alt={`Elite ${examName} preparation in ${cityName}`}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent"></div>
-              </div>
-            </div>
-
-            {/* Floating elements */}
-            <div className="absolute -top-8 -right-8 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg hover:scale-105 transition-all duration-300 border border-white/30">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary font-display">{targetScore}</div>
-                <div className="text-xs text-muted-foreground font-body">Target Score</div>
-              </div>
-            </div>
-            
-            <div className="absolute -bottom-8 -left-8 bg-gradient-to-r from-secondary to-accent rounded-2xl p-4 shadow-lg hover:scale-105 transition-all duration-300">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white font-display">Live</div>
-                <div className="text-xs text-white/90 font-body">Tutoring</div>
-              </div>
-            </div>
-
-            <div className="absolute top-1/2 -right-12 bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-md hover:scale-105 transition-all duration-300 border border-white/30">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-primary font-body">Online</span>
-              </div>
-            </div>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl transform rotate-6"></div>
+            <img
+              src={heroStudents}
+              alt={`Students preparing for ${examName} in ${cityName}`}
+              className="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover"
+              loading="eager"
+            />
           </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 };

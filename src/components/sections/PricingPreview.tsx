@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button-enhanced";
 import { Check, Star, ArrowRight } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 type Plan = {
   name: string;
@@ -80,37 +81,18 @@ export const PricingPreview = () => {
 
           {/* Billing Toggle */}
           <div className="flex items-center justify-center mt-8 gap-4">
-            <span
-              className={`text-sm ${
-                !isAnnual ? "text-primary font-medium" : "text-neutral-600"
-              }`}
-            >
-              Monthly
-            </span>
+            
 
-            <button
-              type="button"
-              role="switch"
-              aria-checked={isAnnual}
-              onClick={() => setIsAnnual((v) => !v)}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${
-                isAnnual ? "bg-accent" : "bg-neutral-300"
-              }`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  isAnnual ? "translate-x-6" : "translate-x-1"
-                }`}
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted-foreground">Monthly</span>
+              <Switch
+                id="billing-toggle"
+                checked={isAnnual}
+                onCheckedChange={setIsAnnual}
               />
-            </button>
-
-            <span
-              className={`text-sm font-medium ${
-                isAnnual ? "text-primary" : "text-neutral-600"
-              }`}
-            >
-              Annual <span className="text-accent">(Save 20%)</span>
-            </span>
+              <span className="text-sm text-muted-foreground">Annual</span>
+            </div>
+           
           </div>
           {isAnnual && (
             <p className="mt-2 text-xs text-neutral-600">

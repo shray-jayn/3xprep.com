@@ -60,8 +60,11 @@ export default function ExamLocationPage(props: ExamLocationProps) {
   // Allow values from: 1) props, 2) Link state, 3) query params, 4) sane defaults
   const location = useLocation() as { state?: Partial<ExamLocationProps> };
   const [searchParams] = useSearchParams();
-  
-  useConsoleTrace("ExamLocationPage", { props, searchParams: Object.fromEntries(searchParams.entries()) });
+
+  useConsoleTrace("ExamLocationPage", {
+    props,
+    searchParams: Object.fromEntries(searchParams.entries()),
+  });
 
   const EXAM: ExamType =
     props.exam ??
@@ -191,7 +194,8 @@ export default function ExamLocationPage(props: ExamLocationProps) {
             How It <span className="highlight-gold">Works</span>
           </h2>
           <p className="text-xl text-muted-foreground font-body max-w-3xl mx-auto">
-            Our proven 4-step process gets you from where you are to where you want to be.
+            Our proven 4-step process gets you from where you are to where you
+            want to be.
           </p>
         </div>
 
@@ -248,16 +252,17 @@ export default function ExamLocationPage(props: ExamLocationProps) {
       <Section variant="dark" className="text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
         <div className="relative z-10">
-          <h2 className="text-display text-fluid-display font-bold text-white mb-6">
+          <h2 className="text-display text-fluid-display font-bold text-black mb-6">
             Ready to Master the{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">
               {currentExam.name}
             </span>{" "}
             in {CITY_NAME}?
           </h2>
-          <p className="text-xl text-white/90 font-body max-w-3xl mx-auto mb-8">
-            Join hundreds of successful students who've achieved their dream {currentExam.name} scores. 
-            Your transformation starts with a free assessment.
+          <p className="text-xl text-black/70 font-body max-w-3xl mx-auto mb-8">
+            Join hundreds of successful students who've achieved their dream{" "}
+            {currentExam.name} scores. Your transformation starts with a free
+            assessment.
           </p>
           <Button
             variant="secondary"
@@ -267,7 +272,9 @@ export default function ExamLocationPage(props: ExamLocationProps) {
           >
             <span className="mr-2">🚀</span>
             Book Free Assessment Today
-            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">
+              →
+            </span>
           </Button>
         </div>
       </Section>

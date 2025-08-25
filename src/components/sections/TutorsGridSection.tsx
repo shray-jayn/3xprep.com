@@ -59,7 +59,7 @@ export function TutorsGridSection({
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {tutors.map((t, idx) => (
             <div key={idx} className="card-elegant p-6 text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary to-navy-deep rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 font-display">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-navy-deep rounded-full flex items-center justify-center text-blue font-bold text-lg mx-auto mb-4 font-display">
                 {t.image}
               </div>
               <h3 className="font-semibold text-primary mb-1 font-headline">
