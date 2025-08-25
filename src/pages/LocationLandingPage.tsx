@@ -15,7 +15,8 @@ export default function LocationLandingPage() {
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
   
   // Extract the full path and find matching location
-  const fullPath = `/mcat-lsat-sat-prep-tutoring-${wildcard}`;
+  // const fullPath = `/mcat-lsat-sat-prep-tutoring-${wildcard}`;
+  const fullPath = `/mcat-lsat-sat-prep-tutoring`;
   const location = LOCATIONS.find(loc => 
     fullPath === `/${loc.slug}`
   );
@@ -32,6 +33,8 @@ export default function LocationLandingPage() {
   }
 
   const cityName = location.city;
+
+  console.log("[<-----------Location landing----------->] ", location);
 
   const seo = createLocationSEO(cityName);
 

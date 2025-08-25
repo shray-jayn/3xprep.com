@@ -2,7 +2,7 @@ export const LOCATIONS = [
   {
     id: 1,
     city: "San Diego",
-    slug: "mcat-lsat-sat-prep-tutoring-san-diego",
+    slug: "mcat-lsat-sat-prep-tutoring",
     phone: "+1-619-555-0100",
     seo: {
       title: "3X Prep of San Diego — SAT · LSAT · MCAT Tutoring",
@@ -12,7 +12,7 @@ export const LOCATIONS = [
   {
     id: 2,
     city: "Riverside",
-    slug: "mcat-lsat-sat-prep-tutoring-riverside",
+    slug: "mcat-lsat-sat-prep-tutoring",
     phone: "+1-951-555-0100",
     seo: {
       title: "3X Prep of Riverside — SAT · LSAT · MCAT Tutoring",
@@ -22,7 +22,7 @@ export const LOCATIONS = [
   {
     id: 3,
     city: "Orange County",
-    slug: "mcat-lsat-sat-prep-tutoring-orange-county",
+    slug: "mcat-lsat-sat-prep-tutoring",
     phone: "+1-714-555-0100",
     seo: {
       title: "3X Prep of Orange County — SAT · LSAT · MCAT Tutoring",
@@ -32,7 +32,7 @@ export const LOCATIONS = [
   {
     id: 4,
     city: "Los Angeles",
-    slug: "mcat-lsat-sat-prep-tutoring-los-angeles",
+    slug: "mcat-lsat-sat-prep-tutoring",
     phone: "+1-323-555-0100",
     seo: {
       title: "3X Prep of Los Angeles — SAT · LSAT · MCAT Tutoring",

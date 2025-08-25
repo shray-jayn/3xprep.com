@@ -42,16 +42,10 @@ const App = () => (
           <Suspense fallback={<PageSkeleton />}>
             <Routes>
               <Route path="/" element={<Index />} />
-              {/* <Route path="/tutoring" element={<Tutoring />} /> */}
-              <Route path="/tutoring-locations" element={<LocationsIndex />} />
-              <Route
-                path="/mcat-lsat-sat-prep-tutoring-*"
-                element={<LocationLandingPage />}
-              />
-              <Route
-                path="/*-prep-tutoring-*"
-                element={<ExamLocationPage />}
-              />
+              <Route path="/tutoring" element={<Tutoring />} />
+              <Route path="/tutoring-locations" element={<LocationsIndex />}/>
+              <Route path="/mcat-lsat-sat-prep-tutoring" element={<LocationLandingPage />} />
+              <Route path="/prep-tutoring" element={<ExamLocationPage />} />
               <Route path="/practice-tests" element={<PracticeTests />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
@@ -59,6 +53,7 @@ const App = () => (
                 path="/health"
                 element={<div>{JSON.stringify(Health())}</div>}
               />
+
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

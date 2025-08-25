@@ -8,7 +8,7 @@ export const useConsoleTrace = (componentName: string, deps?: Record<string, any
     if (!import.meta.env.DEV) return;
 
     if (!mountedRef.current) {
-      console.log(`[${componentName}] mounted`, deps || {});
+      // console.log(`[${componentName}] mounted`, deps || {});
       mountedRef.current = true;
     } else if (deps && prevDepsRef.current) {
       // Log changed dependencies
@@ -20,7 +20,7 @@ export const useConsoleTrace = (componentName: string, deps?: Record<string, any
       });
       
       if (Object.keys(changes).length > 0) {
-        console.log(`[${componentName}] props changed:`, changes);
+        // console.log(`[${componentName}] props changed:`, changes);
       }
     }
 
@@ -28,7 +28,7 @@ export const useConsoleTrace = (componentName: string, deps?: Record<string, any
 
     return () => {
       if (import.meta.env.DEV) {
-        console.log(`[${componentName}] unmounted`);
+        // console.log(`[${componentName}] unmounted`);
       }
     };
   }, [componentName, ...(deps ? Object.values(deps) : [])]);
