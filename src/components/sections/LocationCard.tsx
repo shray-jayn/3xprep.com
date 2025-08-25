@@ -85,7 +85,7 @@ export const LocationCard = ({ location }: LocationCardProps) => {
           >
             <Link
               to={`/${location.slug}`}
-              state={{ cityName: location.city }} // 👈 pass city here
+              state={{ cityName: location.city }} 
             >
               View {location.city} Details
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

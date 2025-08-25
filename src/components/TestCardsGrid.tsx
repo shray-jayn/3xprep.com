@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { TestType } from "@/data/site";
 
 interface TestCardsGridProps {
-  location: string;
+  cityName: string; // receive city from parent
 }
 
 const testData: Record<
@@ -36,18 +36,14 @@ const testData: Record<
   },
 };
 
-export const TestCardsGrid = ({ location }: TestCardsGridProps) => {
-  const formatLocationSlug = (loc: string) => {
-    return loc.toLowerCase().replace(/\s+/g, "-");
-  };
-
+export const TestCardsGrid = ({ cityName }: TestCardsGridProps) => {
   return (
     <section className="py-20">
       <div className="container max-w-screen-xl">
         <div className="text-center mb-16">
           <h2 className="text-display text-fluid-headline font-bold text-primary mb-6">
             Elite Test Prep in{" "}
-            <span className="highlight-gold">{location}</span>
+            <span className="highlight-gold">{cityName}</span>
           </h2>
           <p className="text-xl text-neutral-600 font-body max-w-3xl mx-auto">
             Choose your test and start your journey to exceptional scores with
@@ -68,7 +64,7 @@ export const TestCardsGrid = ({ location }: TestCardsGridProps) => {
             >
               <div className="text-6xl mb-6">{data.icon}</div>
               <h3 className="text-2xl font-bold text-primary mb-4 font-headline">
-                Master the {test} in {location}
+                Master the {test} in {cityName}
               </h3>
               <p className="text-neutral-600 font-body mb-8 leading-relaxed">
                 {data.description}
@@ -82,10 +78,9 @@ export const TestCardsGrid = ({ location }: TestCardsGridProps) => {
                 <Link
                   to="/prep-tutoring"
                   state={{
-                    exam: "LSAT", // "SAT" | "LSAT" | "MCAT"
-                    examSlug: "sat", // "sat" | "lsat" | "mcat"
-                    cityName: "China",
-                    locationLabel: "India",
+                    exam: test, // SAT | LSAT | MCAT (chosen card)
+                    examSlug: test.toLowerCase(), // "sat" | "lsat" | "mcat"
+                    cityName, // pass the city from parent
                   }}
                 >
                   Explore {test} Tutoring
