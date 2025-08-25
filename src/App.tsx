@@ -11,6 +11,8 @@ import Index from "./pages/Index";
 import Tutoring from "./pages/Tutoring";
 import LocationsIndex from "./pages/LocationsIndex";
 import LocationTutoringPage from "./pages/LocationTutoringPage";
+import LocationLandingPage from "./pages/LocationLandingPage";
+import ExamLocationPage from "./pages/ExamLocationPage";
 import PracticeTests from "./pages/PracticeTests";
 import NotFound from "./pages/NotFound";
 import { NavbarSkeleton } from "@/components/skeletons";
@@ -51,7 +53,11 @@ const App = () => (
             <Route path="/tutoring-locations" element={<LocationsIndex />} />
             <Route
               path="/mcat-lsat-sat-prep-tutoring-:city"
-              element={<LocationTutoringPage />}
+              element={<LocationLandingPage />}
+            />
+            <Route
+              path="/:exam-prep-tutoring-:city"
+              element={<ExamLocationPage />}
             />
             <Route path="/practice-tests" element={<PracticeTests />} />
             <Route path="/privacy" element={<Privacy />} />
