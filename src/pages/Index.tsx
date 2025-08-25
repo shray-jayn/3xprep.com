@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet-async";
 import { Suspense } from "react";
+import { PageShell } from "@/components/layout/PageShell";
 import { Hero } from "@/components/sections/Hero";
 import { ValueProposition } from "@/components/sections/ValueProposition";
 import { Explainer } from "@/components/sections/Explainer";
@@ -9,64 +9,64 @@ import { SocialProof } from "@/components/sections/SocialProof";
 import { ComparisonTable } from "@/components/sections/ComparisonTable";
 import { PricingPreview } from "@/components/sections/PricingPreview";
 import { FooterCTA } from "@/components/sections/FooterCTA";
-import { Footer } from "@/components/layout/Footer";
 import { SITE_CONFIG } from "@/data/site";
 import { HeroSkeleton, CardGridSkeleton } from "@/components/skeletons";
+import { createPageSEO } from "@/lib/seo";
 
 const Index = () => {
-  return (
-    <>
-      <Helmet>
-        <title>{SITE_CONFIG.name} — {SITE_CONFIG.tagline}</title>
-        <meta name="description" content={SITE_CONFIG.description} />
-        <meta name="keywords" content="SAT tutoring, LSAT prep, MCAT preparation, test prep, tutoring, elite education" />
-        <link rel="canonical" href={SITE_CONFIG.url} />
-      </Helmet>
+  const seo = createPageSEO({
+    title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
+    description: SITE_CONFIG.description,
+    canonical: SITE_CONFIG.url
+  });
 
-      <div className="min-h-screen bg-background bg-pattern-dots">
-        <Suspense fallback={<HeroSkeleton />}>
-          <Hero />
-        </Suspense>
-        
-        <Suspense fallback={<CardGridSkeleton cards={3} />}>
-          <ValueProposition />
-        </Suspense>
-        
-        <div className="bg-premium-radial">
-          <Suspense fallback={<CardGridSkeleton cards={1} />}>
-            <Explainer />
-          </Suspense>
-        </div>
-        
-        <Suspense fallback={<CardGridSkeleton cards={2} />}>
-          <LiveClasses />
-        </Suspense>
-        
-        <div className="bg-premium-subtle">
-          <Suspense fallback={<CardGridSkeleton cards={1} />}>
-            <Analytics />
-          </Suspense>
-        </div>
-        
+  return (
+    <PageShell 
+      title={seo.title}
+      description={seo.description}
+      canonical={seo.canonical}
+      className="bg-pattern-dots"
+    >
+      <Suspense fallback={<HeroSkeleton />}>
+        <Hero />
+      </Suspense>
+      
+      <Suspense fallback={<CardGridSkeleton cards={3} />}>
+        <ValueProposition />
+      </Suspense>
+      
+      <div className="bg-premium-radial">
         <Suspense fallback={<CardGridSkeleton cards={1} />}>
-          <SocialProof />
+          <Explainer />
         </Suspense>
-        
-        <Suspense fallback={<CardGridSkeleton cards={1} />}>
-          <ComparisonTable />
-        </Suspense>
-        
-        <Suspense fallback={<CardGridSkeleton cards={3} />}>
-          <PricingPreview />
-        </Suspense>
-        
-        <Suspense fallback={<CardGridSkeleton cards={1} />}>
-          <FooterCTA />
-        </Suspense>
-        
-   
       </div>
-    </>
+      
+      <Suspense fallback={<CardGridSkeleton cards={2} />}>
+        <LiveClasses />
+      </Suspense>
+      
+      <div className="bg-premium-subtle">
+        <Suspense fallback={<CardGridSkeleton cards={1} />}>
+          <Analytics />
+        </Suspense>
+      </div>
+      
+      <Suspense fallback={<CardGridSkeleton cards={1} />}>
+        <SocialProof />
+      </Suspense>
+      
+      <Suspense fallback={<CardGridSkeleton cards={1} />}>
+        <ComparisonTable />
+      </Suspense>
+      
+      <Suspense fallback={<CardGridSkeleton cards={3} />}>
+        <PricingPreview />
+      </Suspense>
+      
+      <Suspense fallback={<CardGridSkeleton cards={1} />}>
+        <FooterCTA />
+      </Suspense>
+    </PageShell>
   );
 };
 
