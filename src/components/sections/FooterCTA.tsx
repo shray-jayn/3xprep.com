@@ -4,66 +4,81 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export const FooterCTA = () => {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-primary via-primary/95 to-navy-deep relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--secondary)/0.15),transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.15),transparent_50%)] pointer-events-none" />
-      {/* Additional dark overlay */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+    <section className="py-20 lg:py-32 bg-gradient-to-br from-navy-deep via-primary/95 to-accent/20 relative overflow-hidden">
+      {/* Enhanced Background Elements */}
+      <div className="absolute inset-0">
+        {/* Geometric shapes */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-secondary/20 to-transparent rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-accent/20 to-transparent rounded-full transform translate-x-1/2 translate-y-1/2"></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-primary/20 to-primary/40"></div>
+      </div>
 
-      <div className="container max-w-screen-xl mx-auto px-4 relative">
-        <div className="text-center space-y-8 relative z-10">
-          {/* Icon */}
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/20 rounded-2xl mb-8">
-            <Sparkles className="h-8 w-8 text-secondary" />
+      <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
+        <div className="text-center space-y-10">
+          {/* Enhanced Icon */}
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-secondary/30 to-accent/30 backdrop-blur-sm border border-white/20 rounded-3xl mb-8">
+            <Sparkles className="h-10 w-10 text-white" />
           </div>
 
-          {/* Headline */}
+          {/* Enhanced Headline */}
           <div className="space-y-6">
-            <h2 className="text-display text-fluid-display font-bold text-white leading-tight drop-shadow-lg [text-shadow:_2px_2px_4px_rgb(0_0_0_/_50%)]">
-              Ready to <span className="highlight-gold">3X Your Future</span>?
+            <h2 className="text-display text-fluid-display font-bold text-white leading-tight">
+              Ready to{" "}
+              <span className="bg-gradient-to-r from-secondary via-accent to-secondary bg-clip-text text-transparent">
+                3X Your Future
+              </span>
+              ?
             </h2>
-            <p className="text-xl text-white font-body max-w-3xl mx-auto leading-relaxed drop-shadow-md [text-shadow:_1px_1px_2px_rgb(0_0_0_/_60%)]">
-              Join the program trusted by students across SAT, LSAT, and MCAT.
-              Transform your scores, unlock elite opportunities, and build the
-              future you deserve.
+            <p className="text-xl text-white/90 font-body max-w-4xl mx-auto leading-relaxed">
+              Join the elite program trusted by students across SAT, LSAT, and MCAT.
+              Transform your scores, unlock premium opportunities, and build the
+              extraordinary future you deserve.
             </p>
           </div>
 
-          {/* CTAs */}
+          {/* Enhanced CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <Button variant="hero" size="xl" asChild>
+            <Button 
+              size="xl" 
+              className="group bg-gradient-to-r from-secondary to-accent hover:from-secondary/90 hover:to-accent/90 text-primary font-semibold px-10 py-5 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+              asChild
+            >
               <Link to="/get-started">
-                Get Started Now
-                <ArrowRight className="ml-2 h-5 w-5" />
+                🚀 Get Started Now
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
             </Button>
 
-            {/* FIXED: force transparent bg + white text/border in base state */}
             <Button
               variant="outline"
               size="xl"
-              className="bg-transparent border border-white/30 text-white hover:bg-white/10 hover:border-white/60 focus-visible:ring-white/60"
+              className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 font-semibold px-10 py-5 text-lg"
               asChild
             >
-              <Link to="/free-trial">Try Free for 7 Days</Link>
+              <Link to="/free-trial">
+                <span className="mr-2">⭐</span>
+                Try Free for 7 Days
+              </Link>
             </Button>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-white text-sm drop-shadow-sm">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-secondary rounded-full"></div>
-              <span>30-day money-back guarantee</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-accent rounded-full"></div>
-              <span>No hidden fees or commitments</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-secondary rounded-full"></div>
-              <span>Cancel anytime</span>
-            </div>
+          {/* Enhanced Trust Indicators */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 max-w-4xl mx-auto">
+            {[
+              { icon: "🛡️", text: "30-day money-back guarantee" },
+              { icon: "💎", text: "No hidden fees or commitments" },
+              { icon: "🔄", text: "Cancel anytime, keep materials" }
+            ].map((item, index) => (
+              <div key={index} className="flex items-center justify-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+                <span className="text-xl">{item.icon}</span>
+                <span className="text-white/90 text-sm font-body">{item.text}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
