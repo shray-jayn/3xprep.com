@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -20,7 +26,10 @@ export const LocationCard = ({ location }: LocationCardProps) => {
   return (
     <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-hover hover:-translate-y-2 border-border/50">
       <div className="absolute top-4 right-4">
-        <Badge variant="secondary" className="bg-secondary text-secondary-foreground font-semibold">
+        <Badge
+          variant="secondary"
+          className="bg-secondary text-secondary-foreground font-semibold"
+        >
           #{location.id}
         </Badge>
       </div>
@@ -55,7 +64,9 @@ export const LocationCard = ({ location }: LocationCardProps) => {
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm font-medium text-foreground">Available Tests:</p>
+          <p className="text-sm font-medium text-foreground">
+            Available Tests:
+          </p>
           <div className="flex gap-2">
             {["SAT", "LSAT", "MCAT"].map((test) => (
               <Badge key={test} variant="outline" className="text-xs">
@@ -72,7 +83,10 @@ export const LocationCard = ({ location }: LocationCardProps) => {
             className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-200"
             asChild
           >
-            <Link to={`/${location.slug}`}>
+            <Link
+              to={`/${location.slug}`}
+              state={{ cityName: location.city }} // 👈 pass city here
+            >
               View {location.city} Details
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>

@@ -1,20 +1,24 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TutoringPackages } from "@/components/TutoringPackages";
 import { FAQGenerator } from "@/components/FAQGenerator";
 import { LeadDialog } from "@/components/LeadDialog";
-import { useState } from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import heroStudents from "@/assets/hero-students.jpg";
 import { PageShell } from "@/components/layout/PageShell";
 import { SITE_CONFIG } from "@/data/site";
 import { createPageSEO } from "@/lib/seo";
 
-// --- Hard-coded config ---
-const EXAM: "SAT" | "LSAT" | "MCAT" = "SAT";
-const EXAM_SLUG = "sat"; // used in canonical URL
-const CITY_NAME = "Delhi";
-const LOCATION_LABEL = "India"; // if you show location text elsewhere
+type ExamType = "SAT" | "LSAT" | "MCAT";
+
+type ExamLocationProps = {
+  exam?: ExamType;
+  examSlug?: string; // used in canonical URL
+  cityName?: string;
+  locationLabel?: string; // if you show location text elsewhere
+};
 
 const EXAM_DATA = {
   LSAT: {
@@ -46,8 +50,37 @@ const EXAM_DATA = {
   },
 } as const;
 
-export default function ExamLocationPage() {
+export default function ExamLocationPage(props: ExamLocationProps) {
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
+
+  // Allow values from: 1) props, 2) Link state, 3) query params, 4) sane defaults
+  const location = useLocation() as { state?: Partial<ExamLocationProps> };
+  const [searchParams] = useSearchParams();
+
+  const EXAM: ExamType =
+    props.exam ??
+    (location.state?.exam as ExamType | undefined) ??
+    (searchParams.get("exam") as ExamType | null) ??
+    "SAT";
+
+  const EXAM_SLUG: string =
+    props.examSlug ??
+    location.state?.examSlug ??
+    searchParams.get("slug") ??
+    EXAM.toLowerCase();
+
+  const CITY_NAME: string =
+    props.cityName ??
+    location.state?.cityName ??
+    searchParams.get("city") ??
+    "D";
+
+  const LOCATION_LABEL: string =
+    props.locationLabel ??
+    location.state?.locationLabel ??
+    searchParams.get("location") ??
+    "India";
+
   const currentExam = EXAM_DATA[EXAM];
 
   const steps = [
@@ -91,6 +124,17 @@ export default function ExamLocationPage() {
     canonical: SITE_CONFIG.url,
   });
 
+  if (import.meta.env.DEV) {
+    const queryObj = Object.fromEntries(searchParams.entries());
+    // Collapsed group keeps console tidy
+    console.groupCollapsed("[ExamLocationPage] props/state/query");
+    console.log("props ➜", props);
+    console.log("location.state ➜", location.state);
+    console.log("query params ➜", queryObj);
+    console.table({ EXAM, EXAM_SLUG, CITY_NAME, LOCATION_LABEL });
+    console.groupEnd();
+  }
+
   return (
     <PageShell
       title={seo.title}
@@ -123,7 +167,7 @@ export default function ExamLocationPage() {
 
       <main className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 bg-gradient-to-br from-background via-neutral-100/50 to-background overflow-hidden">
+        <section className="relative py-24 lg:py-32 bg-gradient-to-br from-background via-neutral-100/50 to-background overflow-hidden bg-pattern-grid ">
           <div className="container max-w-screen-xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
@@ -244,7 +288,7 @@ export default function ExamLocationPage() {
         </section>
 
         {/* Why 3X Prep */}
-        <section className="py-20 bg-neutral-100/30">
+        <section className="py-20 bg-neutral-100/30 bg-pattern-grid ">
           <div className="container max-w-screen-xl">
             <div className="text-center mb-16">
               <h2 className="text-display text-fluid-headline font-bold text-primary mb-6">

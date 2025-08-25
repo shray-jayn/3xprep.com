@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { PageShell } from "@/components/layout/PageShell";
 import { LocationsHero } from "@/components/sections/LocationsHero";
 import { LocationsGrid } from "@/components/sections/LocationsGrid";
@@ -7,6 +7,12 @@ import { TutoringPackagesGrid } from "@/components/sections/TutoringPackagesGrid
 import { LeadDialog } from "@/components/LeadDialog";
 import { LOCATIONS, SITE_CONFIG } from "@/data/site";
 import { createPageSEO } from "@/lib/seo";
+import { ProcessSection } from "@/components/sections/ProcessSection";
+import { WhyChooseSection } from "@/components/sections/WhyChooseSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { TutorsGridSection } from "@/components/sections/TutorsGridSection";
+import { FAQSection } from "@/components/sections/FAQSection";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 const packages = [
   {
@@ -17,7 +23,7 @@ const packages = [
     popular: false,
   },
   {
-    title: "10 Hours", 
+    title: "10 Hours",
     features: ["Free 30-min Assessment"],
     price: "$1,899",
     payments: "or 3 payments of $633",
@@ -41,13 +47,18 @@ const packages = [
 
 export default function LocationsIndex() {
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
-  const [leadDialogMode, setLeadDialogMode] = useState<"consultation" | "diagnostic">("consultation");
+  const [leadDialogMode, setLeadDialogMode] = useState<
+    "consultation" | "diagnostic"
+  >("consultation");
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Get default city from current location page
   const currentCity = (() => {
     if (location.pathname.includes("/mcat-lsat-sat-prep-tutoring-")) {
-      const citySlug = location.pathname.split("/mcat-lsat-sat-prep-tutoring-")[1];
+      const citySlug = location.pathname.split(
+        "/mcat-lsat-sat-prep-tutoring-"
+      )[1];
       const locationData = LOCATIONS.find((loc) => loc.slug.includes(citySlug));
       return locationData?.city;
     }
@@ -61,24 +72,50 @@ export default function LocationsIndex() {
 
   const seo = createPageSEO({
     title: "Tutoring Locations — 3X Prep",
-    description: "Find 3X Prep tutoring locations across Southern California. Elite SAT, LSAT, and MCAT tutoring in San Diego, Riverside, Orange County, and Los Angeles.",
-    canonical: `${SITE_CONFIG.url}/tutoring-locations`
+    description:
+      "Find 3X Prep tutoring locations across Southern California. Elite SAT, LSAT, and MCAT tutoring in San Diego, Riverside, Orange County, and Los Angeles.",
+    canonical: `${SITE_CONFIG.url}/tutoring-locations`,
   });
 
   return (
-    <PageShell 
+    <PageShell
       title={seo.title}
       description={seo.description}
       canonical={seo.canonical}
       className="bg-pattern-dots"
     >
-      <LocationsHero onBookConsultation={() => openLeadDialog("consultation")} />
-      
+      <LocationsHero
+        onBookConsultation={() => openLeadDialog("consultation")}
+      />
+
       <LocationsGrid />
-      
-      <TutoringPackagesGrid 
-        packages={packages} 
+
+      <TutoringPackagesGrid
+        packages={packages}
         onPurchase={(packageTitle) => openLeadDialog("consultation")}
+      />
+
+      {/* Our Process */}
+      <ProcessSection />
+
+      {/* Why Choose Us */}
+      <WhyChooseSection />
+
+      {/* Testimonials */}
+      <TestimonialsSection />
+
+      {/* Tutors */}
+      <TutorsGridSection />
+
+      {/* FAQs */}
+      <FAQSection />
+
+      {/* Final CTA */}
+      <FinalCTA
+        title="🎓 Ready to Triple Your Prep?"
+        description="Book your free consultation today and start your journey to your dream score."
+        buttonText="Book Free Consultation"
+        onButtonClick={() => navigate("/consultation")}
       />
 
       <LeadDialog

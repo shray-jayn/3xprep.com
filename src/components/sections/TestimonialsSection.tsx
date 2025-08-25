@@ -38,7 +38,7 @@ export function TestimonialsSection({
     // console.log("[TestimonialsSection] render", testimonials.length);
   }
   return (
-    <section className="py-16 lg:py-24 bg-neutral-100/30">
+    <section className="py-16 lg:py-24 bg-neutral-100/30 bg-pattern-grid ">
       <div className="container max-w-screen-xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-display text-fluid-headline font-bold text-primary mb-6">

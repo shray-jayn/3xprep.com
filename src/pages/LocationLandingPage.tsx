@@ -9,24 +9,27 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { LOCATIONS } from "@/data/site";
 import { createLocationSEO } from "@/lib/seo";
 import { useState } from "react";
+import { TutoringHero } from "@/components/sections/TutoringHero";
 
 export default function LocationLandingPage() {
   const { "*": wildcard } = useParams<{ "*": string }>();
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
-  
+
   // Extract the full path and find matching location
   // const fullPath = `/mcat-lsat-sat-prep-tutoring-${wildcard}`;
   const fullPath = `/mcat-lsat-sat-prep-tutoring`;
-  const location = LOCATIONS.find(loc => 
-    fullPath === `/${loc.slug}`
-  );
-  
+  const location = LOCATIONS.find((loc) => fullPath === `/${loc.slug}`);
+
   if (!location) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-primary mb-4">Location Not Found</h1>
-          <p className="text-neutral-600">The requested location is not available.</p>
+          <h1 className="text-2xl font-bold text-primary mb-4">
+            Location Not Found
+          </h1>
+          <p className="text-neutral-600">
+            The requested location is not available.
+          </p>
         </div>
       </div>
     );
@@ -34,36 +37,37 @@ export default function LocationLandingPage() {
 
   const cityName = location.city;
 
-  console.log("[<-----------Location landing----------->] ", location);
-
   const seo = createLocationSEO(cityName);
 
   return (
-    <PageShell 
+    <PageShell
       title={seo.title}
       description={seo.description}
       canonical={`https://3xprep.com/${location.slug}`}
     >
-      <LocationHero 
+      {/* <LocationHero 
         cityName={cityName} 
         onBookingClick={() => setLeadDialogOpen(true)} 
-      />
+      /> */}
+
+      {/* Hero */}
+      <TutoringHero />
 
       <TestCardsGrid location={cityName} />
 
-      <TutoringPackages 
-        onBookingClick={() => setLeadDialogOpen(true)} 
-        city={cityName} 
+      <TutoringPackages
+        onBookingClick={() => setLeadDialogOpen(true)}
+        city={cityName}
       />
 
       <SocialProofStats cityName={cityName} />
 
-      <FinalCTA 
+      <FinalCTA
         cityName={cityName}
         onButtonClick={() => setLeadDialogOpen(true)}
       />
 
-      <LeadDialog 
+      <LeadDialog
         open={leadDialogOpen}
         onOpenChange={setLeadDialogOpen}
         mode="consultation"

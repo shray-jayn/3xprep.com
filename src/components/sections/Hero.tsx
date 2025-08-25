@@ -5,7 +5,7 @@ import heroStudents from "@/assets/hero-students.jpg"
 
 export const Hero = () => {
   return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-navy-deep via-primary to-navy-deep overflow-hidden">
+    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-navy-deep via-primary to-navy-deep overflow-hidden ">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--secondary)/0.1),transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(var(--accent)/0.1),transparent_50%)] pointer-events-none" />

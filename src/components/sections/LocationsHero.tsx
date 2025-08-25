@@ -12,13 +12,14 @@ export const LocationsHero = ({ onBookConsultation }: LocationsHeroProps) => {
   useConsoleTrace("LocationsHero");
 
   return (
-    <Section variant="gradient" className="py-24">
+    <Section variant="gradient" className="py-24 bg-pattern-grid ">
       <div className="text-center space-y-6 max-w-4xl mx-auto">
         <h1 className="text-[clamp(32px,4vw,48px)] font-playfair font-bold text-navy-deep leading-tight">
-          Find Your Local <span className="highlight-gold">3X Prep</span> Location
+          Find Your Local <span className="highlight-gold">3X Prep</span>{" "}
+          Location
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Elite tutoring for SAT, LSAT, and MCAT across Southern California. 
+          Elite tutoring for SAT, LSAT, and MCAT across Southern California.
           Choose your city to get started with our 99th percentile tutors.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
