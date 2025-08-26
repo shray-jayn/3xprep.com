@@ -84,8 +84,11 @@ export const LocationCard = ({ location }: LocationCardProps) => {
             asChild
           >
             <Link
-              to={`/${location.slug}`}
-              state={{ cityName: location.city }} 
+              to={`/mcat-lsat-sat-prep-tutoring/${location.city
+                .toLowerCase()
+                .trim()
+                .replace(/\s+/g, "-")}`}
+              state={{ cityName: location.city }}
             >
               View {location.city} Details
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

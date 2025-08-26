@@ -43,8 +43,10 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/tutoring" element={<Tutoring />} />
-              <Route path="/tutoring-locations" element={<LocationsIndex />}/>
+              <Route path="/tutoring-locations" element={<LocationsIndex />} />
               <Route path="/mcat-lsat-sat-prep-tutoring" element={<LocationLandingPage />} />
+              <Route path="/mcat-lsat-sat-prep-tutoring/:cityName" element={<LocationLandingPage />}/>
+              <Route path="/prep-tutoring/:cityName/:examName" element={<ExamLocationPage />} />
               <Route path="/prep-tutoring" element={<ExamLocationPage />} />
               <Route path="/practice-tests" element={<PracticeTests />} />
               <Route path="/privacy" element={<Privacy />} />

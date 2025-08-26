@@ -76,7 +76,13 @@ export const TestCardsGrid = ({ cityName }: TestCardsGridProps) => {
                 asChild
               >
                 <Link
-                  to="/prep-tutoring"
+                  to={`/prep-tutoring/${cityName
+                    .toLowerCase()
+                    .trim()
+                    .replace(/\s+/g, "-")}/${test
+                    .toLowerCase()
+                    .trim()
+                    .replace(/\s+/g, "-")}`}
                   state={{
                     exam: test, // SAT | LSAT | MCAT (chosen card)
                     examSlug: test.toLowerCase(), // "sat" | "lsat" | "mcat"
