@@ -64,7 +64,7 @@ export const FinalCTA = ({
           <Button
             variant="outline"
             size="lg"
-            className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-semibold px-8 py-4 text-lg"
+            className="border-2 border-black/30 text-black hover:bg-black/10 hover:border-white/50 font-semibold px-8 py-4 text-lg"
           >
             <span className="mr-2">💬</span>
             Chat with Expert
@@ -72,7 +72,7 @@ export const FinalCTA = ({
         </div>
 
         {/* Trust indicators */}
-        <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-white/80 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-black/80 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-secondary rounded-full"></div>
             <span>Free consultation</span>

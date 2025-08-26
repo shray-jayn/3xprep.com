@@ -57,7 +57,7 @@ export const FooterCTA = () => {
             <Button
               variant="outline"
               size="xl"
-              className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 font-semibold px-10 py-5 text-lg"
+              className="bg-white/10 backdrop-blur-sm border-2 border-black/30 text-black hover:bg-black/10 hover:border-white/50 font-semibold px-10 py-5 text-lg"
               asChild
             >
               <Link to="/free-trial">
