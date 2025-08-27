@@ -146,7 +146,9 @@ export const Explainer = () => {
             </div>
 
             <Button variant="accent" size="lg" asChild>
-              <Link to="/courses">Discover Your Path to Higher Scores</Link>
+              <Link to="/practice-tests">
+                Discover Your Path to Higher Scores
+              </Link>
             </Button>
           </div>
         </div>

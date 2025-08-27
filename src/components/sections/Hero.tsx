@@ -69,7 +69,7 @@ export const Hero = () => {
               </Button>
 
               <Button variant="outline" size="xl" asChild>
-                <Link to="/courses">Explore Courses</Link>
+                <Link to="/tutoring-locations">Explore Courses</Link>
               </Button>
             </div>
 

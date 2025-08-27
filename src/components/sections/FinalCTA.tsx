@@ -91,6 +91,7 @@ export const FinalCTA = ({
           </Button>
 
           <Button
+            onClick={() => openLeadDialog("consultation")}
             variant="outline"
             size="lg"
             className="border-2 border-black/30 text-black hover:bg-black/10 hover:border-white/50 font-semibold px-8 py-4 text-lg"

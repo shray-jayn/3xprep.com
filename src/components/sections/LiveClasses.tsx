@@ -50,30 +50,45 @@ export const LiveClasses = () => {
           <div className="space-y-6">
             <div className="bg-white rounded-2xl shadow-elegant p-6 lg:p-8">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold text-primary font-headline">Upcoming Live Classes</h3>
+                <h3 className="text-xl font-semibold text-primary font-headline">
+                  Upcoming Live Classes
+                </h3>
                 <Calendar className="h-5 w-5 text-accent" />
               </div>
-              
+
               <div className="space-y-4">
                 {upcomingClasses.map((class_, index) => (
-                  <div key={index} className="border border-neutral-200 rounded-lg p-4 hover:border-accent/50 transition-colors cursor-pointer hover-lift">
+                  <div
+                    key={index}
+                    className="border border-neutral-200 rounded-lg p-4 hover:border-accent/50 transition-colors cursor-pointer hover-lift"
+                  >
                     <div className="flex items-start justify-between mb-2">
-                      <h4 className="font-semibold text-primary text-sm font-headline">{class_.title}</h4>
+                      <h4 className="font-semibold text-primary text-sm font-headline">
+                        {class_.title}
+                      </h4>
                       <div className="flex items-center text-xs text-accent">
                         <Clock className="h-3 w-3 mr-1" />
                         Live
                       </div>
                     </div>
-                    <p className="text-sm text-neutral-600 mb-1">{class_.time}</p>
-                    <p className="text-sm text-neutral-500">{class_.instructor}</p>
+                    <p className="text-sm text-neutral-600 mb-1">
+                      {class_.time}
+                    </p>
+                    <p className="text-sm text-neutral-500">
+                      {class_.instructor}
+                    </p>
                     <div className="flex items-center justify-between mt-3">
-                      <span className="text-xs text-neutral-500">{class_.participants}</span>
-                      <Button variant="ghost" size="sm">Join</Button>
+                      <span className="text-xs text-neutral-500">
+                        {class_.participants}
+                      </span>
+                      <Button variant="ghost" size="sm">
+                        Join
+                      </Button>
                     </div>
                   </div>
                 ))}
               </div>
-              
+
               <Button variant="outline" className="w-full mt-6">
                 View Full Schedule
               </Button>
@@ -84,38 +99,43 @@ export const LiveClasses = () => {
           <div className="space-y-8">
             <div className="space-y-6">
               <h2 className="text-display text-fluid-headline font-bold text-primary">
-                Learn Live. <span className="highlight-gold">Learn Smarter.</span>
+                Learn Live.{" "}
+                <span className="highlight-gold">Learn Smarter.</span>
               </h2>
               <p className="text-lg text-neutral-600 font-body leading-relaxed">
-                Join live interactive sessions with expert instructors, access thousands of recorded classes, and get the accountability coaching you need to stay motivated and on track.
+                Join live interactive sessions with expert instructors, access
+                thousands of recorded classes, and get the accountability
+                coaching you need to stay motivated and on track.
               </p>
             </div>
 
             <div className="space-y-6">
               {features.map((feature, index) => {
-                const Icon = feature.icon
+                const Icon = feature.icon;
                 return (
                   <div key={index} className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
                       <Icon className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-primary mb-1 font-headline">{feature.title}</h3>
-                      <p className="text-neutral-600 font-body">{feature.description}</p>
+                      <h3 className="font-semibold text-primary mb-1 font-headline">
+                        {feature.title}
+                      </h3>
+                      <p className="text-neutral-600 font-body">
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
 
             <Button variant="primary" size="lg" asChild>
-              <Link to="/classes">
-                See Class Options
-              </Link>
+              <Link to="/tutoring-locations">See Class Options</Link>
             </Button>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

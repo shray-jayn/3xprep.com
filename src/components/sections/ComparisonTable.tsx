@@ -274,11 +274,11 @@ export const ComparisonTable = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <Button variant="accent" size="lg" asChild>
             <Link to="/pricing">View Full Pricing & Start Your Journey</Link>
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

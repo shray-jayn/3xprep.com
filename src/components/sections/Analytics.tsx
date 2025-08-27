@@ -11,10 +11,13 @@ export const Analytics = () => {
           <div className="space-y-8">
             <div className="space-y-6">
               <h2 className="text-display text-fluid-headline font-bold text-primary">
-                Smarter Prep. <span className="highlight-gold">Data-Driven Results.</span>
+                Smarter Prep.{" "}
+                <span className="highlight-gold">Data-Driven Results.</span>
               </h2>
               <p className="text-lg text-neutral-600 font-body leading-relaxed">
-                Our advanced analytics track your progress, identify patterns, and deliver personalized recommendations that accelerate your improvement faster than traditional prep methods.
+                Our advanced analytics track your progress, identify patterns,
+                and deliver personalized recommendations that accelerate your
+                improvement faster than traditional prep methods.
               </p>
             </div>
 
@@ -23,41 +26,48 @@ export const Analytics = () => {
                 {
                   icon: TrendingUp,
                   title: "Performance Tracking",
-                  description: "Monitor progress across all question types and topics"
+                  description:
+                    "Monitor progress across all question types and topics",
                 },
                 {
                   icon: Target,
                   title: "Targeted Drills",
-                  description: "AI identifies weak spots and creates custom practice"
+                  description:
+                    "AI identifies weak spots and creates custom practice",
                 },
                 {
                   icon: Brain,
                   title: "Learning Patterns",
-                  description: "Understand how you learn best for optimal study plans"
+                  description:
+                    "Understand how you learn best for optimal study plans",
                 },
                 {
                   icon: Zap,
                   title: "Smart Recommendations",
-                  description: "Get personalized next steps based on your data"
-                }
+                  description: "Get personalized next steps based on your data",
+                },
               ].map((feature, index) => {
-                const Icon = feature.icon
+                const Icon = feature.icon;
                 return (
                   <div key={index} className="space-y-3">
                     <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-primary mb-1 font-headline">{feature.title}</h3>
-                      <p className="text-sm text-neutral-600 font-body">{feature.description}</p>
+                      <h3 className="font-semibold text-primary mb-1 font-headline">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm text-neutral-600 font-body">
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
 
             <Button variant="accent" size="lg" asChild>
-              <Link to="/analytics">
+              <Link to="/practice-tests">
                 Discover Your Path to Higher Scores
               </Link>
             </Button>
@@ -68,10 +78,12 @@ export const Analytics = () => {
             <div className="bg-white rounded-2xl shadow-elegant p-6 lg:p-8">
               {/* Dashboard Header */}
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-primary font-headline">Performance Dashboard</h3>
+                <h3 className="text-lg font-semibold text-primary font-headline">
+                  Performance Dashboard
+                </h3>
                 <div className="text-sm text-neutral-500">Last 30 days</div>
               </div>
-              
+
               {/* Main Chart Area */}
               <div className="relative h-40 bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-lg mb-6 flex items-center justify-center overflow-hidden">
                 {/* Simulated Chart */}
@@ -98,10 +110,12 @@ export const Analytics = () => {
                 </div>
                 <div className="relative z-10 text-center">
                   <div className="text-2xl font-bold text-accent">+24%</div>
-                  <div className="text-sm text-neutral-600">Score Improvement</div>
+                  <div className="text-sm text-neutral-600">
+                    Score Improvement
+                  </div>
                 </div>
               </div>
-              
+
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center p-3 bg-accent/5 rounded-lg">
@@ -118,7 +132,7 @@ export const Analytics = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Floating Recommendation Card */}
             <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-card p-4 hover-lift max-w-xs">
               <div className="flex items-start space-x-3">
@@ -126,8 +140,12 @@ export const Analytics = () => {
                   <Brain className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-primary">Next Focus Area</h4>
-                  <p className="text-xs text-neutral-600">Practice reading comprehension for 20 minutes</p>
+                  <h4 className="text-sm font-semibold text-primary">
+                    Next Focus Area
+                  </h4>
+                  <p className="text-xs text-neutral-600">
+                    Practice reading comprehension for 20 minutes
+                  </p>
                 </div>
               </div>
             </div>
@@ -135,5 +153,5 @@ export const Analytics = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }

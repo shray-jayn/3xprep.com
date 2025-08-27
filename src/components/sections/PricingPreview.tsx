@@ -161,7 +161,7 @@ export const PricingPreview = () => {
                   className="w-full"
                   asChild
                 >
-                  <Link to="/pricing">
+                  <Link to="/tutoring-locations">
                     {plan.cta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
