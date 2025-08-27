@@ -2,7 +2,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calculator, Clock } from "lucide-react";
 import { useState } from "react";
-import { TestType } from "@/data/site";
+import { LOCATIONS, TestType } from "@/data/site";
+import { LeadDialog } from "./LeadDialog";
 
 interface TutoringPackagesProps {
   onBookingClick?: () => void;
@@ -15,21 +16,21 @@ const packages = [
     hours: 5,
     price: 999,
     features: ["Free 30-min Assessment"],
-    popular: false
+    popular: false,
   },
   {
     hours: 10,
     price: 1899,
     payments: "or 3 payments of $633",
     features: ["Free 30-min Assessment"],
-    popular: true
+    popular: true,
   },
   {
     hours: 20,
     price: 3699,
     payments: "or 6 payments of $617",
     features: ["Free 30-min Assessment"],
-    popular: false
+    popular: false,
   },
   {
     hours: null,
@@ -38,15 +39,42 @@ const packages = [
     price: 5499,
     payments: "or 8 payments of $688",
     features: ["Free 30-min Assessment", "Custom hourly rate"],
-    popular: false
-  }
+    popular: false,
+  },
 ];
 
-export const TutoringPackages = ({ onBookingClick, test, city }: TutoringPackagesProps) => {
+export const TutoringPackages = ({
+  onBookingClick,
+  test,
+  city,
+}: TutoringPackagesProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [leadDialogOpen, setLeadDialogOpen] = useState(false);
+  const [leadDialogMode, setLeadDialogMode] = useState<
+    "consultation" | "diagnostic"
+  >("consultation");
+
   const handlePurchase = () => {
     if (onBookingClick) {
       onBookingClick();
     }
+  };
+
+  const currentCity = (() => {
+    if (location.pathname.includes("/mcat-lsat-sat-prep-tutoring-")) {
+      const citySlug = location.pathname.split(
+        "/mcat-lsat-sat-prep-tutoring-"
+      )[1];
+      const locationData = LOCATIONS.find((loc) => loc.slug.includes(citySlug));
+      return locationData?.city;
+    }
+    return undefined;
+  })();
+
+  const openLeadDialog = (mode: "consultation" | "diagnostic") => {
+    setLeadDialogMode(mode);
+    setLeadDialogOpen(true);
+    setIsOpen(false);
   };
 
   return (
@@ -112,7 +140,7 @@ export const TutoringPackages = ({ onBookingClick, test, city }: TutoringPackage
               <Button
                 variant={pkg.popular ? "default" : "outline"}
                 className="w-full"
-                onClick={handlePurchase}
+                onClick={() => openLeadDialog("consultation")}
               >
                 Get Started
               </Button>
@@ -138,6 +166,13 @@ export const TutoringPackages = ({ onBookingClick, test, city }: TutoringPackage
           </div>
         </div>
       </div>
+
+      <LeadDialog
+        open={leadDialogOpen}
+        onOpenChange={setLeadDialogOpen}
+        mode={leadDialogMode}
+        defaultCity={currentCity}
+      />
     </section>
   );
 };

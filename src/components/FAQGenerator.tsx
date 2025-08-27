@@ -25,7 +25,7 @@ const generateFAQs = (exam?: TestType, location?: string) => {
     },
     {
       question: `What makes your ${examName} tutors different?`,
-      answer: `Our tutors are all top scorers (99th percentile) who have been carefully vetted and trained in our proven teaching methodology. They don't just know the content—they know how to teach it effectively and adapt to each student's learning style.`
+      answer: `Our tutors are all top scorers (99th percentile) who have been carefully vetted and trained in our proven teaching methodology. They don't just know the content they know how to teach it effectively and adapt to each student's learning style.`
     }
   ];
 

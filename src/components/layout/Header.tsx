@@ -88,9 +88,9 @@ export const Header = () => {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" asChild>
+          {/* <Button variant="ghost" asChild>
             <Link to="/login">Log In</Link>
-          </Button>
+          </Button> */}
           <Button 
             variant="primary" 
             size="sm"
@@ -152,9 +152,9 @@ export const Header = () => {
                 </nav>
                 
                 <div className="mt-auto pt-6 space-y-4">
-                  <Button variant="ghost" className="w-full justify-start" asChild>
+                  {/* <Button variant="ghost" className="w-full justify-start" asChild>
                     <Link to="/login" onClick={() => setIsOpen(false)}>Log In</Link>
-                  </Button>
+                  </Button> */}
                   <Button 
                     variant="primary" 
                     size="lg" 

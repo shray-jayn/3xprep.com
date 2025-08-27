@@ -5,7 +5,7 @@ const DEFAULT_STEPS = [
     number: "01",
     title: "Elite Tutor Matching",
     description:
-      "We match you with a top tutor — each scored 99th percentile (LSAT 175+, MCAT 520+, SAT 1550+), carefully vetted and trained to teach at the highest level.",
+      "We match you with a top tutor each scored 99th percentile (LSAT 175+, MCAT 520+, SAT 1550+), carefully vetted and trained to teach at the highest level.",
   },
   {
     number: "02",

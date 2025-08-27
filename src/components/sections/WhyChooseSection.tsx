@@ -12,13 +12,13 @@ const DEFAULT_ITEMS: Differentiator[] = [
     icon: Users,
     title: "Elite Tutors, Elite Results",
     description:
-      "We only hire proven top scorers—then train them to teach at the highest level. Our tutors don't just know the content, they know how to teach it.",
+      "We only hire proven top scorers then train them to teach at the highest level. Our tutors don't just know the content, they know how to teach it.",
   },
   {
     icon: Target,
     title: "Custom Tailored Study Plans",
     description:
-      "You'll never wonder what to do next—we map out every drill, test, and session based on your unique needs and timeline.",
+      "You'll never wonder what to do next we map out every drill, test, and session based on your unique needs and timeline.",
   },
   {
     icon: Shield,
@@ -30,7 +30,7 @@ const DEFAULT_ITEMS: Differentiator[] = [
     icon: Calendar,
     title: "Ultimate Flexibility",
     description:
-      "Sessions scheduled around your life. Evenings, weekends, and last-minute changes—we adapt to your schedule.",
+      "Sessions scheduled around your life. Evenings, weekends, and last-minute changes we adapt to your schedule.",
   },
 ];
 

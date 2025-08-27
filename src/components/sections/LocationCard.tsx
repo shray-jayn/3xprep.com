@@ -17,6 +17,7 @@ interface LocationCardProps {
     city: string;
     slug: string;
     phone: string;
+    address: string;
   };
 }
 
@@ -44,7 +45,7 @@ export const LocationCard = ({ location }: LocationCardProps) => {
               {location.city}
             </CardTitle>
             <CardDescription className="text-base">
-              3X Prep of {location.city}
+              {location.address}
             </CardDescription>
           </div>
         </div>

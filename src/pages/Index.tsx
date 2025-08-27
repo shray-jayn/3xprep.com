@@ -12,6 +12,8 @@ import { FooterCTA } from "@/components/sections/FooterCTA";
 import { SITE_CONFIG } from "@/data/site";
 import { HeroSkeleton, CardGridSkeleton } from "@/components/skeletons";
 import { createPageSEO } from "@/lib/seo";
+import { FinalCTA } from "@/components/sections/FinalCTA";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const seo = createPageSEO({
@@ -19,9 +21,9 @@ const Index = () => {
     description: SITE_CONFIG.description,
     canonical: SITE_CONFIG.url
   });
-
+const navigate = useNavigate();
   return (
-    <PageShell 
+    <PageShell
       title={seo.title}
       description={seo.description}
       canonical={seo.canonical}
@@ -30,41 +32,47 @@ const Index = () => {
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>
-      
+
       <Suspense fallback={<CardGridSkeleton cards={3} />}>
         <ValueProposition />
       </Suspense>
-      
+
       <div className="bg-premium-radial">
         <Suspense fallback={<CardGridSkeleton cards={1} />}>
           <Explainer />
         </Suspense>
       </div>
-      
+
       <Suspense fallback={<CardGridSkeleton cards={2} />}>
         <LiveClasses />
       </Suspense>
-      
+
       <div className="bg-premium-subtle">
         <Suspense fallback={<CardGridSkeleton cards={1} />}>
           <Analytics />
         </Suspense>
       </div>
-      
+
       <Suspense fallback={<CardGridSkeleton cards={1} />}>
         <SocialProof />
       </Suspense>
-      
+
       <Suspense fallback={<CardGridSkeleton cards={1} />}>
         <ComparisonTable />
       </Suspense>
-      
+
       <Suspense fallback={<CardGridSkeleton cards={3} />}>
         <PricingPreview />
       </Suspense>
-      
+
       <Suspense fallback={<CardGridSkeleton cards={1} />}>
-        <FooterCTA />
+        {/* <FooterCTA /> */}
+        <FinalCTA
+          title="🎓 Ready to Triple Your Prep?"
+          description="Book your free consultation today and start your journey to your dream score."
+          buttonText="Get Started Now"
+          onButtonClick={() => navigate("/consultation")}
+        />
       </Suspense>
     </PageShell>
   );

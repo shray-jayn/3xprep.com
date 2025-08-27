@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import { LOCATIONS } from "@/data/site";
 import { useConsoleTrace } from "@/hooks/useConsoleTrace";
+import { useState } from "react";
+import { LeadDialog } from "../LeadDialog";
 
 interface FinalCTAProps {
   cityName?: string;
@@ -10,19 +13,43 @@ interface FinalCTAProps {
   onButtonClick: () => void;
 }
 
-export const FinalCTA = ({ 
-  cityName, 
-  title, 
-  description, 
+export const FinalCTA = ({
+  cityName,
+  title,
+  description,
   buttonText = "Get Started Today - It's Free!",
-  onButtonClick 
+  onButtonClick,
 }: FinalCTAProps) => {
   useConsoleTrace("FinalCTA", { cityName, title });
 
-  const defaultTitle = cityName 
+  const [isOpen, setIsOpen] = useState(false);
+  const [leadDialogOpen, setLeadDialogOpen] = useState(false);
+  const [leadDialogMode, setLeadDialogMode] = useState<
+    "consultation" | "diagnostic"
+  >("consultation");
+
+  // Get default city from current location page
+  const currentCity = (() => {
+    if (location.pathname.includes("/mcat-lsat-sat-prep-tutoring-")) {
+      const citySlug = location.pathname.split(
+        "/mcat-lsat-sat-prep-tutoring-"
+      )[1];
+      const locationData = LOCATIONS.find((loc) => loc.slug.includes(citySlug));
+      return locationData?.city;
+    }
+    return undefined;
+  })();
+
+  const openLeadDialog = (mode: "consultation" | "diagnostic") => {
+    setLeadDialogMode(mode);
+    setLeadDialogOpen(true);
+    setIsOpen(false);
+  };
+
+  const defaultTitle = cityName
     ? `Ready to Start Your Success Story in ${cityName}?`
     : "Ready to Start Your Success Story?";
-    
+
   const defaultDescription = cityName
     ? `Join hundreds of students in ${cityName} who have achieved their dream scores with 3X Prep.`
     : "Join thousands of students who have achieved their dream scores with 3X Prep.";
@@ -45,22 +72,24 @@ export const FinalCTA = ({
         <h2 className="text-display text-fluid-display font-bold text-black mb-6 leading-tight">
           {title || defaultTitle}
         </h2>
-        
+
         <p className="text-xl text-black/70 font-body max-w-3xl mx-auto mb-8 leading-relaxed">
           {description || defaultDescription}
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            onClick={onButtonClick}
+          <Button
+            onClick={() => openLeadDialog("consultation")}
             size="lg"
             className="group bg-gradient-to-r from-secondary to-accent hover:from-secondary/90 hover:to-accent/90 text-primary font-semibold px-8 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
           >
             <span className="mr-2">✨</span>
             {buttonText}
-            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">
+              →
+            </span>
           </Button>
-          
+
           <Button
             variant="outline"
             size="lg"
@@ -87,6 +116,13 @@ export const FinalCTA = ({
           </div>
         </div>
       </div>
+
+      <LeadDialog
+        open={leadDialogOpen}
+        onOpenChange={setLeadDialogOpen}
+        mode={leadDialogMode}
+        defaultCity={currentCity}
+      />
     </Section>
   );
 };

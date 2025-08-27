@@ -39,7 +39,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Suspense fallback={<PageSkeleton />}>
+          <Suspense fallback={<PageSkeleton />}>  
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/tutoring" element={<Tutoring />} />

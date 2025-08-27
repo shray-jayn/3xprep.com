@@ -25,7 +25,7 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
     name: "Maya P.",
     score: "SAT 1520",
     improvement: "280 point increase",
-    text: "From 1310 to 1520 on my SAT—I couldn't believe it! The strategies and practice made all the difference for my dream schools.",
+    text: "From 1310 to 1520 on my SAT I couldn't believe it! The strategies and practice made all the difference for my dream schools.",
   },
 ];
 

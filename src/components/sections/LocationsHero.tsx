@@ -19,8 +19,8 @@ export const LocationsHero = ({ onBookConsultation }: LocationsHeroProps) => {
           Location
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Elite tutoring for SAT, LSAT, and MCAT across Southern California.
-          Choose your city to get started with our 99th percentile tutors.
+          Find 3X Prep tutoring locations nationwide. Elite SAT, LSAT, and MCAT
+          tutoring with 99th percentile tutors and personalized study plans.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button variant="default" size="lg" onClick={onBookConsultation}>

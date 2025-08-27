@@ -59,7 +59,7 @@ export const Explainer = () => {
                   <div className="space-y-4">
                     <div className="bg-neutral-100 rounded-lg p-4">
                       <p className="text-sm text-neutral-700 font-body">
-                        "Seven singers—F, G, H, I, J, K, and L—will perform in a
+                        "Seven singers F, G, H, I, J, K, and L will perform in a
                         concert..."
                       </p>
                     </div>

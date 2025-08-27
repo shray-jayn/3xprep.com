@@ -13,6 +13,7 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { TutorsGridSection } from "@/components/sections/TutorsGridSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { PricingPreview } from "@/components/sections/PricingPreview";
 
 const packages = [
   {
@@ -73,7 +74,8 @@ export default function LocationsIndex() {
   const seo = createPageSEO({
     title: "Tutoring Locations — 3X Prep",
     description:
-      "Find 3X Prep tutoring locations across Southern California. Elite SAT, LSAT, and MCAT tutoring in San Diego, Riverside, Orange County, and Los Angeles.",
+      "Find 3X Prep tutoring locations nationwide. Elite SAT, LSAT, and MCAT tutoring now available in San Diego, Riverside, Orange County, Los Angeles, and major cities across the U.S. including New York, Chicago, Houston, Atlanta, Boston, and more.",
+
     canonical: `${SITE_CONFIG.url}/tutoring-locations`,
   });
 
@@ -90,10 +92,12 @@ export default function LocationsIndex() {
 
       <LocationsGrid />
 
-      <TutoringPackagesGrid
+      {/* <TutoringPackagesGrid
         packages={packages}
         onPurchase={(packageTitle) => openLeadDialog("consultation")}
-      />
+      /> */}
+
+      <PricingPreview />
 
       {/* Our Process */}
       <ProcessSection />

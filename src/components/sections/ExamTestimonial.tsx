@@ -58,7 +58,7 @@ export const ExamTestimonial = ({ examName, cityName }: ExamTestimonialProps) =>
             <div className="flex items-center gap-6">
               <div className="flex-1">
                 <cite className="text-xl font-semibold text-primary font-headline not-italic">
-                  — {testimonial.author}
+                   {testimonial.author}
                 </cite>
                 <p className="text-muted-foreground font-body mt-1">
                   {testimonial.details}
