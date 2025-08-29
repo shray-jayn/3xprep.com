@@ -15,18 +15,19 @@ services:
     environment:
       NODE_ENV: production
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:8085:80"  # for direct testing via http://SERVER_IP:8085
+    # ❌ No public ports; cloudflared will reach this by service name
     networks:
       - edge
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    command: tunnel --no-autoupdate run
+    command: tunnel run                       # <-- use local config file
     environment:
-      - TUNNEL_TOKEN=${TUNNEL_TOKEN}   # <-- IMPORTANT: exact name
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}          # <-- put the long token in .env
     depends_on:
       - frontend
+    volumes:
+      - ./ops/cloudflared-config.yml:/etc/cloudflared/config.yml:ro
     restart: unless-stopped
     networks:
       - edge

@@ -1,0 +1,4 @@
+ingress:
+  - hostname: www.3xprep.com
+    service: http://frontend:80   # service name + container port
+  - service: http_status:404
