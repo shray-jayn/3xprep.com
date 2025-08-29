@@ -15,19 +15,20 @@ services:
     environment:
       NODE_ENV: production
     restart: unless-stopped
-    # ❌ No public ports; cloudflared will reach this by service name
     networks:
       - edge
 
   cloudflared:
-  image: cloudflare/cloudflared:latest
-  command: ["tunnel", "--config", "/etc/cloudflared/config.yml", "run"]
-  environment:
-    - TUNNEL_TOKEN=${TUNNEL_TOKEN}
-  depends_on:
-    - frontend
-  volumes:
-    - ./ops/cloudflared:/etc/cloudflared:ro   # directory contains config.yml
-  restart: unless-stopped
-  networks:
-    - edge
+    image: cloudflare/cloudflared:latest
+    # Force cloudflared to use the local config file
+    command: >-
+      tunnel --config /etc/cloudflared/config.yml run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    depends_on:
+      - frontend
+    volumes:
+      - ./ops/cloudflared:/etc/cloudflared:ro
+    restart: unless-stopped
+    networks:
+      - edge
