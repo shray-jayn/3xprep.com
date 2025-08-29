@@ -21,13 +21,13 @@ services:
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    command: tunnel run                       # <-- use local config file
+    command: tunnel run
     environment:
-      - TUNNEL_TOKEN=${TUNNEL_TOKEN}          # <-- put the long token in .env
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     depends_on:
       - frontend
     volumes:
-      - ./ops/cloudflared-config.yml:/etc/cloudflared/config.yml:ro
+      - ./ops/cloudflared:/etc/cloudflared:ro # <-- mount directory, contains config.yml
     restart: unless-stopped
     networks:
       - edge

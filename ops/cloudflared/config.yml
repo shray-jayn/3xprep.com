@@ -1,0 +1,4 @@
+ingress:
+  - hostname: www.3xprep.com
+    service: http://frontend:80
+  - service: http_status:404
