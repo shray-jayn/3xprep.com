@@ -10,33 +10,30 @@ services:
     build:
       context: .
       args:
-        # Override via .env if needed
         VITE_API_BASE: ${VITE_API_BASE:-https://api.3xprep.com}
     image: stride-frontend:latest
     environment:
       NODE_ENV: production
     restart: unless-stopped
-    # No public ports; cloudflared reaches it by service name
     networks:
       - edge
 
   cloudflared:
     image: cloudflare/cloudflared:latest
     command:
-      - sh
-      - -c
-      - |
-        cat >/tmp/config.yml <<'EOF'
-        ingress:
-          - hostname: www.3xprep.com
-            service: http://frontend:80
-          - service: http_status:404
-        EOF
-        exec cloudflared tunnel run --config /tmp/config.yml --token "${TUNNEL_TOKEN}" --no-autoupdate
+      - tunnel
+      - run
+      - --config
+      - /etc/cloudflared/config.yml
+      - --token
+      - ${TUNNEL_TOKEN}
+      - --no-autoupdate
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     depends_on:
       - frontend
+    volumes:
+      - ./etc/cloudflared:/etc/cloudflared:ro
     restart: unless-stopped
     networks:
       - edge
