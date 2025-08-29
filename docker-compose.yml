@@ -20,14 +20,14 @@ services:
       - edge
 
   cloudflared:
-    image: cloudflare/cloudflared:latest
-    command: tunnel run
-    environment:
-      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
-    depends_on:
-      - frontend
-    volumes:
-      - ./ops/cloudflared:/etc/cloudflared:ro # <-- mount directory, contains config.yml
-    restart: unless-stopped
-    networks:
-      - edge
+  image: cloudflare/cloudflared:latest
+  command: ["tunnel", "--config", "/etc/cloudflared/config.yml", "run"]
+  environment:
+    - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+  depends_on:
+    - frontend
+  volumes:
+    - ./ops/cloudflared:/etc/cloudflared:ro   # directory contains config.yml
+  restart: unless-stopped
+  networks:
+    - edge
