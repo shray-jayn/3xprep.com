@@ -20,15 +20,15 @@ services:
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    # Force cloudflared to use the local config file
+    # Force cloudflared to read your local config file
     command: >-
       tunnel --config /etc/cloudflared/config.yml run
     environment:
-      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}   # must exist in .env (the long token)
     depends_on:
       - frontend
     volumes:
-      - ./ops/cloudflared:/etc/cloudflared:ro
+      - ./etc/cloudflared/config.yml:/etc/cloudflared/config.yml:ro
     restart: unless-stopped
     networks:
       - edge
