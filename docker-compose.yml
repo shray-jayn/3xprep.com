@@ -16,7 +16,7 @@ services:
       NODE_ENV: production
     restart: unless-stopped
     ports:
-      - "8085:80"   # for direct testing via http://SERVER_IP:8085
+      - "127.0.0.1:8085:80"  # for direct testing via http://SERVER_IP:8085
     networks:
       - edge
 
