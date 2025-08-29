@@ -1,4 +1,10 @@
 version: "3.9"
+
+networks:
+  edge:
+    name: edge
+    driver: bridge
+
 services:
   frontend:
     build:
@@ -6,8 +12,24 @@ services:
       args:
         VITE_API_BASE: ${VITE_API_BASE:-https://api.3xprep.com}
     image: stride-frontend:latest
-    ports:
-      - "8085:80"
     environment:
       NODE_ENV: production
     restart: unless-stopped
+    # Keep this while testing direct IP: http://SERVER_IP:8085
+    ports:
+      - "8085:80"
+    networks:
+      - edge
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    # Use token auth (no config.yml needed). Cloudflare Dashboard will define the hostname->service mapping.
+    command: tunnel --no-autoupdate run
+    environment:
+      # Put your long token in .env (see below)
+      - CLOUDFLARE_TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - frontend
+    restart: unless-stopped
+    networks:
+      - edge
